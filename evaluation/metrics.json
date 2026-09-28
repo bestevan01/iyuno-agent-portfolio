@@ -1,0 +1,202 @@
+{
+  "primary_run": "offline-hybrid-dev",
+  "primary": {
+    "run": "offline-hybrid-dev",
+    "set": "dev",
+    "created": "2026-09-28T20:42:14+0900",
+    "config": {
+      "mode": "offline",
+      "embedder": "e5",
+      "e5_model": "intfloat/multilingual-e5-small",
+      "retrieval": "hybrid",
+      "hybrid_alpha": 0.3,
+      "top_k": 4,
+      "abstain_threshold": 0.78,
+      "faith_threshold": 0.9
+    },
+    "n_questions": 40,
+    "retrieval": {
+      "hit@4": 1.0,
+      "recall@4": 0.9,
+      "mrr": 0.95,
+      "n": 30
+    },
+    "answer": {
+      "keyword_coverage": 0.7667,
+      "faithfulness_proxy": 0.9944,
+      "faithfulness_llm_judge": null,
+      "citation_precision": 0.8833,
+      "false_abstain_rate": 0.0
+    },
+    "tools": {
+      "selection_accuracy": 1.0,
+      "result_accuracy": 1.0,
+      "n": 8
+    },
+    "out_of_scope": {
+      "abstain_accuracy": 1.0,
+      "n": 2
+    },
+    "latency_ms": {
+      "p50": 321.1,
+      "p95": 508.9,
+      "mean": 297.5
+    },
+    "tokens": {
+      "prompt_total": 0,
+      "completion_total": 0
+    },
+    "cost_usd_total": 0.0
+  },
+  "holdout": {
+    "run": "offline-hybrid-holdout",
+    "set": "holdout",
+    "created": "2026-09-28T20:43:06+0900",
+    "config": {
+      "mode": "offline",
+      "embedder": "e5",
+      "e5_model": "intfloat/multilingual-e5-small",
+      "retrieval": "hybrid",
+      "hybrid_alpha": 0.3,
+      "top_k": 4,
+      "abstain_threshold": 0.78,
+      "faith_threshold": 0.9
+    },
+    "n_questions": 12,
+    "retrieval": {
+      "hit@4": 0.9167,
+      "recall@4": 0.9167,
+      "mrr": 0.875,
+      "n": 12
+    },
+    "answer": {
+      "keyword_coverage": 0.8333,
+      "faithfulness_proxy": 0.9833,
+      "faithfulness_llm_judge": null,
+      "citation_precision": 0.7917,
+      "false_abstain_rate": 0.0
+    },
+    "tools": {
+      "selection_accuracy": null,
+      "result_accuracy": null,
+      "n": 0
+    },
+    "out_of_scope": {
+      "abstain_accuracy": null,
+      "n": 0
+    },
+    "latency_ms": {
+      "p50": 370.8,
+      "p95": 450.0,
+      "mean": 368.2
+    },
+    "tokens": {
+      "prompt_total": 0,
+      "completion_total": 0
+    },
+    "cost_usd_total": 0.0
+  },
+  "ablation": {
+    "offline-tfidf-dev": {
+      "retrieval": {
+        "hit@4": 0.4667,
+        "recall@4": 0.4,
+        "mrr": 0.4278,
+        "n": 30
+      },
+      "answer": {
+        "keyword_coverage": 0.3,
+        "faithfulness_proxy": 0.9833,
+        "faithfulness_llm_judge": null,
+        "citation_precision": 0.3833,
+        "false_abstain_rate": 0.0
+      },
+      "latency_ms": {
+        "p50": 15.1,
+        "p95": 20.3,
+        "mean": 14.3
+      }
+    },
+    "offline-dense-dev": {
+      "retrieval": {
+        "hit@4": 0.8667,
+        "recall@4": 0.7667,
+        "mrr": 0.8222,
+        "n": 30
+      },
+      "answer": {
+        "keyword_coverage": 0.6333,
+        "faithfulness_proxy": 0.9917,
+        "faithfulness_llm_judge": null,
+        "citation_precision": 0.7556,
+        "false_abstain_rate": 0.0
+      },
+      "latency_ms": {
+        "p50": 250.6,
+        "p95": 475.1,
+        "mean": 237.5
+      }
+    },
+    "offline-hybrid-dev": {
+      "retrieval": {
+        "hit@4": 1.0,
+        "recall@4": 0.9,
+        "mrr": 0.95,
+        "n": 30
+      },
+      "answer": {
+        "keyword_coverage": 0.7667,
+        "faithfulness_proxy": 0.9944,
+        "faithfulness_llm_judge": null,
+        "citation_precision": 0.8833,
+        "false_abstain_rate": 0.0
+      },
+      "latency_ms": {
+        "p50": 321.1,
+        "p95": 508.9,
+        "mean": 297.5
+      }
+    },
+    "offline-dense-holdout": {
+      "retrieval": {
+        "hit@4": 0.8333,
+        "recall@4": 0.8333,
+        "mrr": 0.8333,
+        "n": 12
+      },
+      "answer": {
+        "keyword_coverage": 0.9167,
+        "faithfulness_proxy": 0.9833,
+        "faithfulness_llm_judge": null,
+        "citation_precision": 0.8333,
+        "false_abstain_rate": 0.0
+      },
+      "latency_ms": {
+        "p50": 336.3,
+        "p95": 469.8,
+        "mean": 332.0
+      }
+    },
+    "offline-hybrid-holdout": {
+      "retrieval": {
+        "hit@4": 0.9167,
+        "recall@4": 0.9167,
+        "mrr": 0.875,
+        "n": 12
+      },
+      "answer": {
+        "keyword_coverage": 0.8333,
+        "faithfulness_proxy": 0.9833,
+        "faithfulness_llm_judge": null,
+        "citation_precision": 0.7917,
+        "false_abstain_rate": 0.0
+      },
+      "latency_ms": {
+        "p50": 370.8,
+        "p95": 450.0,
+        "mean": 368.2
+      }
+    }
+  },
+  "llm_runs": {}
+}

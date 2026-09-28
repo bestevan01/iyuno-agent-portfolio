@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install
+        run: pip install -r requirements-dev.txt
+      - name: Lint
+        run: ruff check .
+      - name: Test
+        run: pytest -v
+      - name: Offline smoke test (TF-IDF index)
+        run: |
+          python -m agent.build_index --embedder tfidf --out /tmp/idx
+          AGENT_INDEX_DIR=/tmp/idx AGENT_EMBEDDER=tfidf AGENT_ABSTAIN=0 python -c "
+          from agent import load_agent
+          r = load_agent().ask('CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H')
+          assert '9.8' in r.answer, r.answer
+          print(r.answer)"

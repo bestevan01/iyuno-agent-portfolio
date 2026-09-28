@@ -1,0 +1,12 @@
+{"id": "h01", "type": "rag", "question": "비밀번호 최대 길이는 최소 몇 자까지 허용해야 하나요?", "expected_docs": ["cs-authentication", "cs-password-storage"], "keywords": [["64"]]}
+{"id": "h02", "type": "rag", "question": "bcrypt를 쓸 때 입력 길이 제한 때문에 생기는 문제는?", "expected_docs": ["cs-password-storage"], "keywords": [["72"]]}
+{"id": "h03", "type": "rag", "question": "세션 유휴 타임아웃은 어떻게 설정해야 하나요?", "expected_docs": ["cs-session-management"], "keywords": [["idle", "유휴", "timeout", "타임아웃"]]}
+{"id": "h04", "type": "rag", "question": "ORM을 사용하면 SQL 인젝션으로부터 완전히 안전한가요?", "expected_docs": ["cs-sql-injection-prevention", "top10-a03"], "keywords": [["ORM"]]}
+{"id": "h05", "type": "rag", "question": "Content Security Policy는 XSS 방어에 어떤 도움이 되나요?", "expected_docs": ["cs-cross-site-scripting-prevention"], "keywords": [["CSP", "Content Security Policy"]]}
+{"id": "h06", "type": "rag", "question": "클라우드 메타데이터 엔드포인트가 SSRF 공격에서 위험한 이유는?", "expected_docs": ["cs-server-side-request-forgery-prevention", "top10-a10"], "keywords": [["metadata", "메타데이터"]]}
+{"id": "h07", "type": "rag", "question": "도커 컨테이너에서 리눅스 capabilities를 줄이는 방법은?", "expected_docs": ["cs-docker-security"], "keywords": [["cap-drop", "capabilit"]]}
+{"id": "h08", "type": "rag", "question": "업로드된 파일은 서버의 어디에 저장하는 것이 안전한가요?", "expected_docs": ["cs-file-upload"], "keywords": [["webroot", "웹 루트", "outside", "외부"]]}
+{"id": "h09", "type": "rag", "question": "로그 인젝션 공격은 어떻게 막나요?", "expected_docs": ["cs-logging"], "keywords": [["injection", "인젝션", "encod", "인코딩", "sanitiz"]]}
+{"id": "h10", "type": "rag", "question": "TOTP 인증 앱 방식은 SMS보다 어떤 점이 나은가요?", "expected_docs": ["cs-multifactor-authentication"], "keywords": [["TOTP"]]}
+{"id": "h11", "type": "rag", "question": "암호화 실패(Cryptographic Failures)의 대표적인 예시는?", "expected_docs": ["top10-a02"], "keywords": [["clear text", "plaintext", "평문"]]}
+{"id": "h12", "type": "rag", "question": "권한 검사를 프론트엔드에서만 하면 왜 안 되나요?", "expected_docs": ["top10-a01", "cs-authorization"], "keywords": [["server", "서버"]]}

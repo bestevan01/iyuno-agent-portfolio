@@ -1,0 +1,1178 @@
+{
+  "CWE-2": {
+    "id": "CWE-2",
+    "name": "7PK - Environment",
+    "top10": "A05:2021 – Security Misconfiguration",
+    "doc_id": "top10-a05"
+  },
+  "CWE-11": {
+    "id": "CWE-11",
+    "name": "ASP.NET Misconfiguration: Creating Debug Binary",
+    "top10": "A05:2021 – Security Misconfiguration",
+    "doc_id": "top10-a05"
+  },
+  "CWE-13": {
+    "id": "CWE-13",
+    "name": "ASP.NET Misconfiguration: Password in Configuration File",
+    "top10": "A05:2021 – Security Misconfiguration",
+    "doc_id": "top10-a05"
+  },
+  "CWE-15": {
+    "id": "CWE-15",
+    "name": "External Control of System or Configuration Setting",
+    "top10": "A05:2021 – Security Misconfiguration",
+    "doc_id": "top10-a05"
+  },
+  "CWE-16": {
+    "id": "CWE-16",
+    "name": "Configuration",
+    "top10": "A05:2021 – Security Misconfiguration",
+    "doc_id": "top10-a05"
+  },
+  "CWE-20": {
+    "id": "CWE-20",
+    "name": "Improper Input Validation",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-22": {
+    "id": "CWE-22",
+    "name": "Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-23": {
+    "id": "CWE-23",
+    "name": "Relative Path Traversal",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-35": {
+    "id": "CWE-35",
+    "name": "Path Traversal: '.../...//'",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-59": {
+    "id": "CWE-59",
+    "name": "Improper Link Resolution Before File Access ('Link Following')",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-73": {
+    "id": "CWE-73",
+    "name": "External Control of File Name or Path",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-74": {
+    "id": "CWE-74",
+    "name": "Improper Neutralization of Special Elements in Output Used by a Downstream Component ('Injection')",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-75": {
+    "id": "CWE-75",
+    "name": "Failure to Sanitize Special Elements into a Different Plane (Special Element Injection)",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-77": {
+    "id": "CWE-77",
+    "name": "Improper Neutralization of Special Elements used in a Command ('Command Injection')",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-78": {
+    "id": "CWE-78",
+    "name": "Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-79": {
+    "id": "CWE-79",
+    "name": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-80": {
+    "id": "CWE-80",
+    "name": "Improper Neutralization of Script-Related HTML Tags in a Web Page (Basic XSS)",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-83": {
+    "id": "CWE-83",
+    "name": "Improper Neutralization of Script in Attributes in a Web Page",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-87": {
+    "id": "CWE-87",
+    "name": "Improper Neutralization of Alternate XSS Syntax",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-88": {
+    "id": "CWE-88",
+    "name": "Improper Neutralization of Argument Delimiters in a Command ('Argument Injection')",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-89": {
+    "id": "CWE-89",
+    "name": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-90": {
+    "id": "CWE-90",
+    "name": "Improper Neutralization of Special Elements used in an LDAP Query ('LDAP Injection')",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-91": {
+    "id": "CWE-91",
+    "name": "XML Injection (aka Blind XPath Injection)",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-93": {
+    "id": "CWE-93",
+    "name": "Improper Neutralization of CRLF Sequences ('CRLF Injection')",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-94": {
+    "id": "CWE-94",
+    "name": "Improper Control of Generation of Code ('Code Injection')",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-95": {
+    "id": "CWE-95",
+    "name": "Improper Neutralization of Directives in Dynamically Evaluated Code ('Eval Injection')",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-96": {
+    "id": "CWE-96",
+    "name": "Improper Neutralization of Directives in Statically Saved Code ('Static Code Injection')",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-97": {
+    "id": "CWE-97",
+    "name": "Improper Neutralization of Server-Side Includes (SSI) Within a Web Page",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-98": {
+    "id": "CWE-98",
+    "name": "Improper Control of Filename for Include/Require Statement in PHP Program ('PHP Remote File Inclusion')",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-99": {
+    "id": "CWE-99",
+    "name": "Improper Control of Resource Identifiers ('Resource Injection')",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-100": {
+    "id": "CWE-100",
+    "name": "Deprecated: Was catch-all for input validation issues",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-113": {
+    "id": "CWE-113",
+    "name": "Improper Neutralization of CRLF Sequences in HTTP Headers ('HTTP Response Splitting')",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-116": {
+    "id": "CWE-116",
+    "name": "Improper Encoding or Escaping of Output",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-117": {
+    "id": "CWE-117",
+    "name": "Improper Output Neutralization for Logs",
+    "top10": "A09:2021 – Security Logging and Monitoring Failures",
+    "doc_id": "top10-a09"
+  },
+  "CWE-138": {
+    "id": "CWE-138",
+    "name": "Improper Neutralization of Special Elements",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-183": {
+    "id": "CWE-183",
+    "name": "Permissive List of Allowed Inputs",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-184": {
+    "id": "CWE-184",
+    "name": "Incomplete List of Disallowed Inputs",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-200": {
+    "id": "CWE-200",
+    "name": "Exposure of Sensitive Information to an Unauthorized Actor",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-201": {
+    "id": "CWE-201",
+    "name": "Exposure of Sensitive Information Through Sent Data",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-209": {
+    "id": "CWE-209",
+    "name": "Generation of Error Message Containing Sensitive Information",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-213": {
+    "id": "CWE-213",
+    "name": "Exposure of Sensitive Information Due to Incompatible Policies",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-219": {
+    "id": "CWE-219",
+    "name": "Storage of File with Sensitive Data Under Web Root",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-223": {
+    "id": "CWE-223",
+    "name": "Omission of Security-relevant Information",
+    "top10": "A09:2021 – Security Logging and Monitoring Failures",
+    "doc_id": "top10-a09"
+  },
+  "CWE-235": {
+    "id": "CWE-235",
+    "name": "Improper Handling of Extra Parameters",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-255": {
+    "id": "CWE-255",
+    "name": "Credentials Management Errors",
+    "top10": "A07:2021 – Identification and Authentication Failures",
+    "doc_id": "top10-a07"
+  },
+  "CWE-256": {
+    "id": "CWE-256",
+    "name": "Unprotected Storage of Credentials",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-257": {
+    "id": "CWE-257",
+    "name": "Storing Passwords in a Recoverable Format",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-259": {
+    "id": "CWE-259",
+    "name": "Use of Hard-coded Password",
+    "top10": "A07:2021 – Identification and Authentication Failures",
+    "doc_id": "top10-a07"
+  },
+  "CWE-260": {
+    "id": "CWE-260",
+    "name": "Password in Configuration File",
+    "top10": "A05:2021 – Security Misconfiguration",
+    "doc_id": "top10-a05"
+  },
+  "CWE-261": {
+    "id": "CWE-261",
+    "name": "Weak Encoding for Password",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-264": {
+    "id": "CWE-264",
+    "name": "Permissions, Privileges, and Access Controls (should no longer be used)",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-266": {
+    "id": "CWE-266",
+    "name": "Incorrect Privilege Assignment",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-269": {
+    "id": "CWE-269",
+    "name": "Improper Privilege Management",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-275": {
+    "id": "CWE-275",
+    "name": "Permission Issues",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-276": {
+    "id": "CWE-276",
+    "name": "Incorrect Default Permissions",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-280": {
+    "id": "CWE-280",
+    "name": "Improper Handling of Insufficient Permissions or Privileges",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-284": {
+    "id": "CWE-284",
+    "name": "Improper Access Control",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-285": {
+    "id": "CWE-285",
+    "name": "Improper Authorization",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-287": {
+    "id": "CWE-287",
+    "name": "Improper Authentication",
+    "top10": "A07:2021 – Identification and Authentication Failures",
+    "doc_id": "top10-a07"
+  },
+  "CWE-288": {
+    "id": "CWE-288",
+    "name": "Authentication Bypass Using an Alternate Path or Channel",
+    "top10": "A07:2021 – Identification and Authentication Failures",
+    "doc_id": "top10-a07"
+  },
+  "CWE-290": {
+    "id": "CWE-290",
+    "name": "Authentication Bypass by Spoofing",
+    "top10": "A07:2021 – Identification and Authentication Failures",
+    "doc_id": "top10-a07"
+  },
+  "CWE-294": {
+    "id": "CWE-294",
+    "name": "Authentication Bypass by Capture-replay",
+    "top10": "A07:2021 – Identification and Authentication Failures",
+    "doc_id": "top10-a07"
+  },
+  "CWE-295": {
+    "id": "CWE-295",
+    "name": "Improper Certificate Validation",
+    "top10": "A07:2021 – Identification and Authentication Failures",
+    "doc_id": "top10-a07"
+  },
+  "CWE-296": {
+    "id": "CWE-296",
+    "name": "Improper Following of a Certificate's Chain of Trust",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-297": {
+    "id": "CWE-297",
+    "name": "Improper Validation of Certificate with Host Mismatch",
+    "top10": "A07:2021 – Identification and Authentication Failures",
+    "doc_id": "top10-a07"
+  },
+  "CWE-300": {
+    "id": "CWE-300",
+    "name": "Channel Accessible by Non-Endpoint",
+    "top10": "A07:2021 – Identification and Authentication Failures",
+    "doc_id": "top10-a07"
+  },
+  "CWE-302": {
+    "id": "CWE-302",
+    "name": "Authentication Bypass by Assumed-Immutable Data",
+    "top10": "A07:2021 – Identification and Authentication Failures",
+    "doc_id": "top10-a07"
+  },
+  "CWE-304": {
+    "id": "CWE-304",
+    "name": "Missing Critical Step in Authentication",
+    "top10": "A07:2021 – Identification and Authentication Failures",
+    "doc_id": "top10-a07"
+  },
+  "CWE-306": {
+    "id": "CWE-306",
+    "name": "Missing Authentication for Critical Function",
+    "top10": "A07:2021 – Identification and Authentication Failures",
+    "doc_id": "top10-a07"
+  },
+  "CWE-307": {
+    "id": "CWE-307",
+    "name": "Improper Restriction of Excessive Authentication Attempts",
+    "top10": "A07:2021 – Identification and Authentication Failures",
+    "doc_id": "top10-a07"
+  },
+  "CWE-310": {
+    "id": "CWE-310",
+    "name": "Cryptographic Issues",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-311": {
+    "id": "CWE-311",
+    "name": "Missing Encryption of Sensitive Data",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-312": {
+    "id": "CWE-312",
+    "name": "Cleartext Storage of Sensitive Information",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-313": {
+    "id": "CWE-313",
+    "name": "Cleartext Storage in a File or on Disk",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-315": {
+    "id": "CWE-315",
+    "name": "Cleartext Storage of Sensitive Information in a Cookie",
+    "top10": "A05:2021 – Security Misconfiguration",
+    "doc_id": "top10-a05"
+  },
+  "CWE-316": {
+    "id": "CWE-316",
+    "name": "Cleartext Storage of Sensitive Information in Memory",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-319": {
+    "id": "CWE-319",
+    "name": "Cleartext Transmission of Sensitive Information",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-321": {
+    "id": "CWE-321",
+    "name": "Use of Hard-coded Cryptographic Key",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-322": {
+    "id": "CWE-322",
+    "name": "Key Exchange without Entity Authentication",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-323": {
+    "id": "CWE-323",
+    "name": "Reusing a Nonce, Key Pair in Encryption",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-324": {
+    "id": "CWE-324",
+    "name": "Use of a Key Past its Expiration Date",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-325": {
+    "id": "CWE-325",
+    "name": "Missing Required Cryptographic Step",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-326": {
+    "id": "CWE-326",
+    "name": "Inadequate Encryption Strength",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-327": {
+    "id": "CWE-327",
+    "name": "Use of a Broken or Risky Cryptographic Algorithm",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-328": {
+    "id": "CWE-328",
+    "name": "Reversible One-Way Hash",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-329": {
+    "id": "CWE-329",
+    "name": "Not Using a Random IV with CBC Mode",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-330": {
+    "id": "CWE-330",
+    "name": "Use of Insufficiently Random Values",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-331": {
+    "id": "CWE-331",
+    "name": "Insufficient Entropy",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-335": {
+    "id": "CWE-335",
+    "name": "Incorrect Usage of Seeds in Pseudo-Random Number Generator(PRNG)",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-336": {
+    "id": "CWE-336",
+    "name": "Same Seed in Pseudo-Random Number Generator (PRNG)",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-337": {
+    "id": "CWE-337",
+    "name": "Predictable Seed in Pseudo-Random Number Generator (PRNG)",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-338": {
+    "id": "CWE-338",
+    "name": "Use of Cryptographically Weak Pseudo-Random Number Generator(PRNG)",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-340": {
+    "id": "CWE-340",
+    "name": "Generation of Predictable Numbers or Identifiers",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-345": {
+    "id": "CWE-345",
+    "name": "Insufficient Verification of Data Authenticity",
+    "top10": "A08:2021 – Software and Data Integrity Failures",
+    "doc_id": "top10-a08"
+  },
+  "CWE-346": {
+    "id": "CWE-346",
+    "name": "Origin Validation Error",
+    "top10": "A07:2021 – Identification and Authentication Failures",
+    "doc_id": "top10-a07"
+  },
+  "CWE-347": {
+    "id": "CWE-347",
+    "name": "Improper Verification of Cryptographic Signature",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-352": {
+    "id": "CWE-352",
+    "name": "Cross-Site Request Forgery (CSRF)",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-353": {
+    "id": "CWE-353",
+    "name": "Missing Support for Integrity Check",
+    "top10": "A08:2021 – Software and Data Integrity Failures",
+    "doc_id": "top10-a08"
+  },
+  "CWE-359": {
+    "id": "CWE-359",
+    "name": "Exposure of Private Personal Information to an Unauthorized Actor",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-377": {
+    "id": "CWE-377",
+    "name": "Insecure Temporary File",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-384": {
+    "id": "CWE-384",
+    "name": "Session Fixation",
+    "top10": "A07:2021 – Identification and Authentication Failures",
+    "doc_id": "top10-a07"
+  },
+  "CWE-402": {
+    "id": "CWE-402",
+    "name": "Transmission of Private Resources into a New Sphere ('Resource Leak')",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-419": {
+    "id": "CWE-419",
+    "name": "Unprotected Primary Channel",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-425": {
+    "id": "CWE-425",
+    "name": "Direct Request ('Forced Browsing')",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-426": {
+    "id": "CWE-426",
+    "name": "Untrusted Search Path",
+    "top10": "A08:2021 – Software and Data Integrity Failures",
+    "doc_id": "top10-a08"
+  },
+  "CWE-430": {
+    "id": "CWE-430",
+    "name": "Deployment of Wrong Handler",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-434": {
+    "id": "CWE-434",
+    "name": "Unrestricted Upload of File with Dangerous Type",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-441": {
+    "id": "CWE-441",
+    "name": "Unintended Proxy or Intermediary ('Confused Deputy')",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-444": {
+    "id": "CWE-444",
+    "name": "Inconsistent Interpretation of HTTP Requests ('HTTP Request Smuggling')",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-451": {
+    "id": "CWE-451",
+    "name": "User Interface (UI) Misrepresentation of Critical Information",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-470": {
+    "id": "CWE-470",
+    "name": "Use of Externally-Controlled Input to Select Classes or Code ('Unsafe Reflection')",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-471": {
+    "id": "CWE-471",
+    "name": "Modification of Assumed-Immutable Data (MAID)",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-472": {
+    "id": "CWE-472",
+    "name": "External Control of Assumed-Immutable Web Parameter",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-494": {
+    "id": "CWE-494",
+    "name": "Download of Code Without Integrity Check",
+    "top10": "A08:2021 – Software and Data Integrity Failures",
+    "doc_id": "top10-a08"
+  },
+  "CWE-497": {
+    "id": "CWE-497",
+    "name": "Exposure of Sensitive System Information to an Unauthorized Control Sphere",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-501": {
+    "id": "CWE-501",
+    "name": "Trust Boundary Violation",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-502": {
+    "id": "CWE-502",
+    "name": "Deserialization of Untrusted Data",
+    "top10": "A08:2021 – Software and Data Integrity Failures",
+    "doc_id": "top10-a08"
+  },
+  "CWE-520": {
+    "id": "CWE-520",
+    "name": ".NET Misconfiguration: Use of Impersonation",
+    "top10": "A05:2021 – Security Misconfiguration",
+    "doc_id": "top10-a05"
+  },
+  "CWE-521": {
+    "id": "CWE-521",
+    "name": "Weak Password Requirements",
+    "top10": "A07:2021 – Identification and Authentication Failures",
+    "doc_id": "top10-a07"
+  },
+  "CWE-522": {
+    "id": "CWE-522",
+    "name": "Insufficiently Protected Credentials",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-523": {
+    "id": "CWE-523",
+    "name": "Unprotected Transport of Credentials",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-525": {
+    "id": "CWE-525",
+    "name": "Use of Web Browser Cache Containing Sensitive Information",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-526": {
+    "id": "CWE-526",
+    "name": "Exposure of Sensitive Information Through Environmental Variables",
+    "top10": "A05:2021 – Security Misconfiguration",
+    "doc_id": "top10-a05"
+  },
+  "CWE-532": {
+    "id": "CWE-532",
+    "name": "Insertion of Sensitive Information into Log File",
+    "top10": "A09:2021 – Security Logging and Monitoring Failures",
+    "doc_id": "top10-a09"
+  },
+  "CWE-537": {
+    "id": "CWE-537",
+    "name": "Java Runtime Error Message Containing Sensitive Information",
+    "top10": "A05:2021 – Security Misconfiguration",
+    "doc_id": "top10-a05"
+  },
+  "CWE-538": {
+    "id": "CWE-538",
+    "name": "Insertion of Sensitive Information into Externally-Accessible File or Directory",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-539": {
+    "id": "CWE-539",
+    "name": "Use of Persistent Cookies Containing Sensitive Information",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-540": {
+    "id": "CWE-540",
+    "name": "Inclusion of Sensitive Information in Source Code",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-541": {
+    "id": "CWE-541",
+    "name": "Inclusion of Sensitive Information in an Include File",
+    "top10": "A05:2021 – Security Misconfiguration",
+    "doc_id": "top10-a05"
+  },
+  "CWE-547": {
+    "id": "CWE-547",
+    "name": "Use of Hard-coded, Security-relevant Constants",
+    "top10": "A05:2021 – Security Misconfiguration",
+    "doc_id": "top10-a05"
+  },
+  "CWE-548": {
+    "id": "CWE-548",
+    "name": "Exposure of Information Through Directory Listing",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-552": {
+    "id": "CWE-552",
+    "name": "Files or Directories Accessible to External Parties",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-564": {
+    "id": "CWE-564",
+    "name": "SQL Injection: Hibernate",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-565": {
+    "id": "CWE-565",
+    "name": "Reliance on Cookies without Validation and Integrity Checking",
+    "top10": "A08:2021 – Software and Data Integrity Failures",
+    "doc_id": "top10-a08"
+  },
+  "CWE-566": {
+    "id": "CWE-566",
+    "name": "Authorization Bypass Through User-Controlled SQL Primary Key",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-579": {
+    "id": "CWE-579",
+    "name": "J2EE Bad Practices: Non-serializable Object Stored in Session",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-598": {
+    "id": "CWE-598",
+    "name": "Use of GET Request Method With Sensitive Query Strings",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-601": {
+    "id": "CWE-601",
+    "name": "URL Redirection to Untrusted Site ('Open Redirect')",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-602": {
+    "id": "CWE-602",
+    "name": "Client-Side Enforcement of Server-Side Security",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-610": {
+    "id": "CWE-610",
+    "name": "Externally Controlled Reference to a Resource in Another Sphere",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-611": {
+    "id": "CWE-611",
+    "name": "Improper Restriction of XML External Entity Reference",
+    "top10": "A05:2021 – Security Misconfiguration",
+    "doc_id": "top10-a05"
+  },
+  "CWE-613": {
+    "id": "CWE-613",
+    "name": "Insufficient Session Expiration",
+    "top10": "A07:2021 – Identification and Authentication Failures",
+    "doc_id": "top10-a07"
+  },
+  "CWE-614": {
+    "id": "CWE-614",
+    "name": "Sensitive Cookie in HTTPS Session Without 'Secure' Attribute",
+    "top10": "A05:2021 – Security Misconfiguration",
+    "doc_id": "top10-a05"
+  },
+  "CWE-620": {
+    "id": "CWE-620",
+    "name": "Unverified Password Change",
+    "top10": "A07:2021 – Identification and Authentication Failures",
+    "doc_id": "top10-a07"
+  },
+  "CWE-639": {
+    "id": "CWE-639",
+    "name": "Authorization Bypass Through User-Controlled Key",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-640": {
+    "id": "CWE-640",
+    "name": "Weak Password Recovery Mechanism for Forgotten Password",
+    "top10": "A07:2021 – Identification and Authentication Failures",
+    "doc_id": "top10-a07"
+  },
+  "CWE-642": {
+    "id": "CWE-642",
+    "name": "External Control of Critical State Data",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-643": {
+    "id": "CWE-643",
+    "name": "Improper Neutralization of Data within XPath Expressions ('XPath Injection')",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-644": {
+    "id": "CWE-644",
+    "name": "Improper Neutralization of HTTP Headers for Scripting Syntax",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-646": {
+    "id": "CWE-646",
+    "name": "Reliance on File Name or Extension of Externally-Supplied File",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-650": {
+    "id": "CWE-650",
+    "name": "Trusting HTTP Permission Methods on the Server Side",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-651": {
+    "id": "CWE-651",
+    "name": "Exposure of WSDL File Containing Sensitive Information",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-652": {
+    "id": "CWE-652",
+    "name": "Improper Neutralization of Data within XQuery Expressions ('XQuery Injection')",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-653": {
+    "id": "CWE-653",
+    "name": "Insufficient Compartmentalization",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-656": {
+    "id": "CWE-656",
+    "name": "Reliance on Security Through Obscurity",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-657": {
+    "id": "CWE-657",
+    "name": "Violation of Secure Design Principles",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-668": {
+    "id": "CWE-668",
+    "name": "Exposure of Resource to Wrong Sphere",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-706": {
+    "id": "CWE-706",
+    "name": "Use of Incorrectly-Resolved Name or Reference",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-720": {
+    "id": "CWE-720",
+    "name": "OWASP Top Ten 2007 Category A9 - Insecure Communications",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-756": {
+    "id": "CWE-756",
+    "name": "Missing Custom Error Page",
+    "top10": "A05:2021 – Security Misconfiguration",
+    "doc_id": "top10-a05"
+  },
+  "CWE-757": {
+    "id": "CWE-757",
+    "name": "Selection of Less-Secure Algorithm During Negotiation('Algorithm Downgrade')",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-759": {
+    "id": "CWE-759",
+    "name": "Use of a One-Way Hash without a Salt",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-760": {
+    "id": "CWE-760",
+    "name": "Use of a One-Way Hash with a Predictable Salt",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-776": {
+    "id": "CWE-776",
+    "name": "Improper Restriction of Recursive Entity References in DTDs ('XML Entity Expansion')",
+    "top10": "A05:2021 – Security Misconfiguration",
+    "doc_id": "top10-a05"
+  },
+  "CWE-778": {
+    "id": "CWE-778",
+    "name": "Insufficient Logging",
+    "top10": "A09:2021 – Security Logging and Monitoring Failures",
+    "doc_id": "top10-a09"
+  },
+  "CWE-780": {
+    "id": "CWE-780",
+    "name": "Use of RSA Algorithm without OAEP",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-784": {
+    "id": "CWE-784",
+    "name": "Reliance on Cookies without Validation and Integrity Checking in a Security Decision",
+    "top10": "A08:2021 – Software and Data Integrity Failures",
+    "doc_id": "top10-a08"
+  },
+  "CWE-798": {
+    "id": "CWE-798",
+    "name": "Use of Hard-coded Credentials",
+    "top10": "A07:2021 – Identification and Authentication Failures",
+    "doc_id": "top10-a07"
+  },
+  "CWE-799": {
+    "id": "CWE-799",
+    "name": "Improper Control of Interaction Frequency",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-807": {
+    "id": "CWE-807",
+    "name": "Reliance on Untrusted Inputs in a Security Decision",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-818": {
+    "id": "CWE-818",
+    "name": "Insufficient Transport Layer Protection",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-829": {
+    "id": "CWE-829",
+    "name": "Inclusion of Functionality from Untrusted Control Sphere",
+    "top10": "A08:2021 – Software and Data Integrity Failures",
+    "doc_id": "top10-a08"
+  },
+  "CWE-830": {
+    "id": "CWE-830",
+    "name": "Inclusion of Web Functionality from an Untrusted Source",
+    "top10": "A08:2021 – Software and Data Integrity Failures",
+    "doc_id": "top10-a08"
+  },
+  "CWE-840": {
+    "id": "CWE-840",
+    "name": "Business Logic Errors",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-841": {
+    "id": "CWE-841",
+    "name": "Improper Enforcement of Behavioral Workflow",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-862": {
+    "id": "CWE-862",
+    "name": "Missing Authorization",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-863": {
+    "id": "CWE-863",
+    "name": "Incorrect Authorization",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-913": {
+    "id": "CWE-913",
+    "name": "Improper Control of Dynamically-Managed Code Resources",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-915": {
+    "id": "CWE-915",
+    "name": "Improperly Controlled Modification of Dynamically-Determined Object Attributes",
+    "top10": "A08:2021 – Software and Data Integrity Failures",
+    "doc_id": "top10-a08"
+  },
+  "CWE-916": {
+    "id": "CWE-916",
+    "name": "Use of Password Hash With Insufficient Computational Effort",
+    "top10": "A02:2021 – Cryptographic Failures",
+    "doc_id": "top10-a02"
+  },
+  "CWE-917": {
+    "id": "CWE-917",
+    "name": "Improper Neutralization of Special Elements used in an Expression Language Statement ('Expression Language Injection')",
+    "top10": "A03:2021 – Injection",
+    "doc_id": "top10-a03"
+  },
+  "CWE-918": {
+    "id": "CWE-918",
+    "name": "Server-Side Request Forgery (SSRF)",
+    "top10": "A10:2021 – Server-Side Request Forgery (SSRF)",
+    "doc_id": "top10-a10"
+  },
+  "CWE-922": {
+    "id": "CWE-922",
+    "name": "Insecure Storage of Sensitive Information",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  },
+  "CWE-927": {
+    "id": "CWE-927",
+    "name": "Use of Implicit Intent for Sensitive Communication",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-937": {
+    "id": "CWE-937",
+    "name": "OWASP Top 10 2013: Using Components with Known Vulnerabilities",
+    "top10": "A06:2021 – Vulnerable and Outdated Components",
+    "doc_id": "top10-a06"
+  },
+  "CWE-940": {
+    "id": "CWE-940",
+    "name": "Improper Verification of Source of a Communication Channel",
+    "top10": "A07:2021 – Identification and Authentication Failures",
+    "doc_id": "top10-a07"
+  },
+  "CWE-942": {
+    "id": "CWE-942",
+    "name": "Permissive Cross-domain Policy with Untrusted Domains",
+    "top10": "A05:2021 – Security Misconfiguration",
+    "doc_id": "top10-a05"
+  },
+  "CWE-1004": {
+    "id": "CWE-1004",
+    "name": "Sensitive Cookie Without 'HttpOnly' Flag",
+    "top10": "A05:2021 – Security Misconfiguration",
+    "doc_id": "top10-a05"
+  },
+  "CWE-1021": {
+    "id": "CWE-1021",
+    "name": "Improper Restriction of Rendered UI Layers or Frames",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-1032": {
+    "id": "CWE-1032",
+    "name": "OWASP Top Ten 2017 Category A6 - Security Misconfiguration",
+    "top10": "A05:2021 – Security Misconfiguration",
+    "doc_id": "top10-a05"
+  },
+  "CWE-1035": {
+    "id": "CWE-1035",
+    "name": "2017 Top 10 A9: Using Components with Known Vulnerabilities",
+    "top10": "A06:2021 – Vulnerable and Outdated Components",
+    "doc_id": "top10-a06"
+  },
+  "CWE-1104": {
+    "id": "CWE-1104",
+    "name": "Use of Unmaintained Third Party Components",
+    "top10": "A06:2021 – Vulnerable and Outdated Components",
+    "doc_id": "top10-a06"
+  },
+  "CWE-1173": {
+    "id": "CWE-1173",
+    "name": "Improper Use of Validation Framework",
+    "top10": "A04:2021 – Insecure Design",
+    "doc_id": "top10-a04"
+  },
+  "CWE-1174": {
+    "id": "CWE-1174",
+    "name": "ASP.NET Misconfiguration: Improper Model Validation",
+    "top10": "A05:2021 – Security Misconfiguration",
+    "doc_id": "top10-a05"
+  },
+  "CWE-1216": {
+    "id": "CWE-1216",
+    "name": "Lockout Mechanism Errors",
+    "top10": "A07:2021 – Identification and Authentication Failures",
+    "doc_id": "top10-a07"
+  },
+  "CWE-1275": {
+    "id": "CWE-1275",
+    "name": "Sensitive Cookie with Improper SameSite Attribute",
+    "top10": "A01:2021 – Broken Access Control",
+    "doc_id": "top10-a01"
+  }
+}

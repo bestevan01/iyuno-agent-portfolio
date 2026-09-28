@@ -1,0 +1,40 @@
+{"id": "q01", "type": "rag", "question": "비밀번호를 저장할 때 어떤 해시 알고리즘을 쓰라고 권장하나요?", "expected_docs": ["cs-password-storage"], "keywords": [["Argon2id", "Argon2"]]}
+{"id": "q02", "type": "rag", "question": "비밀번호 해싱에서 salt는 왜 필요한가요?", "expected_docs": ["cs-password-storage"], "keywords": [["salt", "솔트"]]}
+{"id": "q03", "type": "rag", "question": "pepper는 salt와 무엇이 다른가요?", "expected_docs": ["cs-password-storage"], "keywords": [["pepper", "페퍼"]]}
+{"id": "q04", "type": "rag", "question": "SQL 인젝션을 막는 가장 기본적인 방어 방법은 무엇인가요?", "expected_docs": ["cs-sql-injection-prevention", "top10-a03"], "keywords": [["prepared statement", "parameterized", "파라미터화", "매개변수화"]]}
+{"id": "q05", "type": "rag", "question": "XSS를 예방하려면 출력할 때 무엇을 해야 하나요?", "expected_docs": ["cs-cross-site-scripting-prevention"], "keywords": [["encoding", "encode", "인코딩"]]}
+{"id": "q06", "type": "rag", "question": "CSRF 공격은 어떻게 방어하나요?", "expected_docs": ["cs-cross-site-request-forgery-prevention"], "keywords": [["token", "토큰"]]}
+{"id": "q07", "type": "rag", "question": "쿠키의 SameSite 속성은 어떤 보안 효과가 있나요?", "expected_docs": ["cs-cross-site-request-forgery-prevention", "cs-session-management"], "keywords": [["SameSite"]]}
+{"id": "q08", "type": "rag", "question": "SSRF를 막으려면 어떻게 해야 하나요?", "expected_docs": ["cs-server-side-request-forgery-prevention", "top10-a10"], "keywords": [["allowlist", "allow list", "allow-list", "허용 목록", "화이트리스트"]]}
+{"id": "q09", "type": "rag", "question": "세션 ID는 얼마나 예측 불가능해야 하나요? 엔트로피 기준이 있나요?", "expected_docs": ["cs-session-management"], "keywords": [["64 bits", "64비트", "entropy", "엔트로피"]]}
+{"id": "q10", "type": "rag", "question": "로그인에 성공하면 세션 ID를 새로 발급해야 하는 이유는?", "expected_docs": ["cs-session-management"], "keywords": [["fixation", "고정"]]}
+{"id": "q11", "type": "rag", "question": "세션 쿠키에 HttpOnly와 Secure 속성을 붙이는 이유는 무엇인가요?", "expected_docs": ["cs-session-management"], "keywords": [["HttpOnly"]]}
+{"id": "q12", "type": "rag", "question": "애플리케이션 로그에 기록하면 안 되는 데이터에는 어떤 것이 있나요?", "expected_docs": ["cs-logging"], "keywords": [["password", "비밀번호", "session", "세션"]]}
+{"id": "q13", "type": "rag", "question": "API 키 같은 시크릿을 소스코드에 하드코딩하면 안 되는 이유와 대안은?", "expected_docs": ["cs-secrets-management"], "keywords": [["vault", "secrets manag", "시크릿 관리"]]}
+{"id": "q14", "type": "rag", "question": "어떤 TLS 버전을 사용해야 하나요?", "expected_docs": ["cs-transport-layer-security"], "keywords": [["TLS 1.3", "TLS 1.2"]]}
+{"id": "q15", "type": "rag", "question": "HSTS 헤더는 무엇을 막아주나요?", "expected_docs": ["cs-transport-layer-security", "top10-a02"], "keywords": [["HSTS", "Strict-Transport-Security"]]}
+{"id": "q16", "type": "rag", "question": "도커 컨테이너를 root 사용자로 실행하면 왜 위험한가요?", "expected_docs": ["cs-docker-security"], "keywords": [["root", "루트"]]}
+{"id": "q17", "type": "rag", "question": "Docker 소켓(docker.sock)을 컨테이너에 마운트하면 어떤 문제가 생기나요?", "expected_docs": ["cs-docker-security"], "keywords": [["docker.sock", "socket", "소켓"]]}
+{"id": "q18", "type": "rag", "question": "파일 업로드 기능에서 확장자는 어떻게 검증해야 하나요?", "expected_docs": ["cs-file-upload"], "keywords": [["extension", "확장자"]]}
+{"id": "q19", "type": "rag", "question": "입력값 검증에서 허용 목록 방식이 차단 목록 방식보다 나은 이유는?", "expected_docs": ["cs-input-validation"], "keywords": [["allowlist", "allow list", "허용 목록", "화이트리스트"]]}
+{"id": "q20", "type": "rag", "question": "오래되거나 취약한 라이브러리를 관리하려면 무엇을 해야 하나요?", "expected_docs": ["top10-a06", "cs-vulnerable-dependency-management"], "keywords": [["inventory", "SBOM", "목록", "인벤토리", "dependency", "의존성"]]}
+{"id": "q21", "type": "rag", "question": "Insecure Design(안전하지 않은 설계)은 구현 버그와 어떻게 다른가요?", "expected_docs": ["top10-a04"], "keywords": [["threat model", "위협 모델", "design", "설계"]]}
+{"id": "q22", "type": "rag", "question": "접근 통제 취약점을 예방하는 기본 원칙은 무엇인가요?", "expected_docs": ["top10-a01", "cs-authorization"], "keywords": [["deny by default", "기본 거부", "least privilege", "최소 권한"]]}
+{"id": "q23", "type": "rag", "question": "보안 설정 오류(Security Misconfiguration)의 대표적인 예시는?", "expected_docs": ["top10-a05"], "keywords": [["default", "기본"]]}
+{"id": "q24", "type": "rag", "question": "소프트웨어 및 데이터 무결성 실패에는 어떤 사례가 포함되나요?", "expected_docs": ["top10-a08"], "keywords": [["deserialization", "역직렬화", "CI/CD", "update", "업데이트"]]}
+{"id": "q25", "type": "rag", "question": "SMS 기반 2단계 인증의 약점은 무엇인가요?", "expected_docs": ["cs-multifactor-authentication"], "keywords": [["SMS"]]}
+{"id": "q26", "type": "rag", "question": "무차별 대입 공격을 막기 위한 계정 잠금은 어떻게 설계해야 하나요?", "expected_docs": ["cs-authentication", "top10-a07"], "keywords": [["lockout", "잠금", "threshold", "임계"]]}
+{"id": "q27", "type": "rag", "question": "OWASP Top 10 2021에서 1위를 차지한 취약점은 무엇인가요?", "expected_docs": ["top10-a01", "top10-a00"], "keywords": [["Broken Access Control", "접근 통제", "접근 제어"]]}
+{"id": "q28", "type": "rag", "question": "보안 로깅 및 모니터링 실패가 왜 위험한가요?", "expected_docs": ["top10-a09", "cs-logging"], "keywords": [["monitor", "모니터링", "detect", "탐지"]]}
+{"id": "q29", "type": "rag", "question": "크리덴셜 스터핑 공격이란 무엇이고 어떻게 대응하나요?", "expected_docs": ["top10-a07", "cs-authentication"], "keywords": [["credential stuffing", "크리덴셜 스터핑", "MFA", "다중"]]}
+{"id": "q30", "type": "rag", "question": "JWT 같은 토큰을 탈취·변조해서 권한을 높이는 공격은 어떤 Top 10 항목에 해당하나요?", "expected_docs": ["top10-a01"], "keywords": [["Access Control", "접근 통제", "접근 제어", "A01"]]}
+{"id": "t01", "type": "tool", "question": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H 벡터의 점수와 심각도는?", "expected_tool": "cvss_calculator", "expected": {"base_score": 9.8, "severity": "Critical"}}
+{"id": "t02", "type": "tool", "question": "반사형 XSS 취약점 벡터 CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N 는 몇 점인가요?", "expected_tool": "cvss_calculator", "expected": {"base_score": 6.1, "severity": "Medium"}}
+{"id": "t03", "type": "tool", "question": "로컬 권한 상승 취약점 AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H 의 CVSS 점수를 계산해줘", "expected_tool": "cvss_calculator", "expected": {"base_score": 7.8, "severity": "High"}}
+{"id": "t04", "type": "tool", "question": "CWE-79는 OWASP Top 10 2021의 어느 카테고리에 속하나요?", "expected_tool": "cwe_lookup", "expected": {"top10_code": "A03"}}
+{"id": "t05", "type": "tool", "question": "CWE-352는 어떤 Top 10 항목에 매핑되나요?", "expected_tool": "cwe_lookup", "expected": {"top10_code": "A01"}}
+{"id": "t06", "type": "tool", "question": "CWE-918이 뭐고 Top 10 몇 번이야?", "expected_tool": "cwe_lookup", "expected": {"top10_code": "A10"}}
+{"id": "t07", "type": "tool", "question": "비밀번호 \"qwerty123\" 괜찮은가요? MFA는 안 써요.", "expected_tool": "password_policy_check", "expected": {"passes": false}}
+{"id": "t08", "type": "tool", "question": "MFA를 켜둔 계정에서 비밀번호 \"correct horse battery staple\" 은 정책을 통과하나요?", "expected_tool": "password_policy_check", "expected": {"passes": true}}
+{"id": "o01", "type": "out_of_scope", "question": "김치찌개를 맛있게 끓이는 방법을 알려줘", "expected_docs": []}
+{"id": "o02", "type": "out_of_scope", "question": "2026년 한국 프로야구 우승팀은 어디야?", "expected_docs": []}

@@ -1,0 +1,48 @@
+{
+  "run": "offline-tfidf-dev",
+  "set": "dev",
+  "created": "2026-09-28T20:43:19+0900",
+  "config": {
+    "mode": "offline",
+    "embedder": "tfidf",
+    "e5_model": "intfloat/multilingual-e5-small",
+    "retrieval": "dense",
+    "hybrid_alpha": 0.3,
+    "top_k": 4,
+    "abstain_threshold": 0.0,
+    "faith_threshold": 0.9
+  },
+  "n_questions": 40,
+  "retrieval": {
+    "hit@4": 0.4667,
+    "recall@4": 0.4,
+    "mrr": 0.4278,
+    "n": 30
+  },
+  "answer": {
+    "keyword_coverage": 0.3,
+    "faithfulness_proxy": 0.9833,
+    "faithfulness_llm_judge": null,
+    "citation_precision": 0.3833,
+    "false_abstain_rate": 0.0
+  },
+  "tools": {
+    "selection_accuracy": 1.0,
+    "result_accuracy": 1.0,
+    "n": 8
+  },
+  "out_of_scope": {
+    "abstain_accuracy": 0.0,
+    "n": 2
+  },
+  "latency_ms": {
+    "p50": 15.1,
+    "p95": 20.3,
+    "mean": 14.3
+  },
+  "tokens": {
+    "prompt_total": 0,
+    "completion_total": 0
+  },
+  "cost_usd_total": 0.0
+}
