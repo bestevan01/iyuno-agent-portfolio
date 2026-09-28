@@ -73,3 +73,22 @@ def test_llm_tool_calling_loop(index, settings):
     assert len(res.citations) == 1 and res.citations[0].ref == 1
     assert res.prompt_tokens == 200 and res.completion_tokens == 40
     assert abs(res.cost_usd - (200 / 1e6 * 1 + 40 / 1e6 * 2)) < 1e-9
+
+
+class EmptyAnswerClient(FakeClient):
+    """검색은 하지만 최종 답변을 비워 보내는 모델(gpt-oss에서 실제로 관찰됨)."""
+
+    def create(self, **kw):
+        self.calls += 1
+        usage = NS(prompt_tokens=10, completion_tokens=0)
+        if self.calls == 1:
+            tc = NS(id="c1", function=NS(name="search_docs", arguments=json.dumps({"query": "SQL injection prepared statements"})))
+            return NS(choices=[NS(message=NS(content="", tool_calls=[tc]))], usage=usage)
+        return NS(choices=[NS(message=NS(content="", tool_calls=None))], usage=usage)
+
+
+def test_llm_empty_answer_falls_back_to_extractive(index, settings):
+    res = Agent(index, settings, client=EmptyAnswerClient()).ask("SQL 인젝션 방어법")
+    assert res.fallback is True
+    assert res.answer.startswith("(모델이 최종 답변을 만들지 못해")
+    assert res.citations, "대체 답변에도 인용이 붙어야 한다"

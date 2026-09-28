@@ -1,9 +1,9 @@
 {
-  "run": "offline-hybrid-holdout",
+  "run": "llm-gpt-oss-20b-holdout",
   "set": "holdout",
-  "created": "2026-09-28T20:43:06+0900",
+  "created": "2026-09-28T13:26:23+0000",
   "config": {
-    "mode": "offline",
+    "mode": "llm:gpt-oss:20b",
     "embedder": "e5",
     "e5_model": "intfloat/multilingual-e5-small",
     "retrieval": "hybrid",
@@ -14,16 +14,16 @@
   },
   "n_questions": 12,
   "retrieval": {
-    "hit@4": 0.9167,
-    "recall@4": 0.9167,
-    "mrr": 0.875,
+    "hit@4": 0.8333,
+    "recall@4": 0.7917,
+    "mrr": 0.6319,
     "n": 12
   },
   "answer": {
-    "keyword_coverage": 0.8333,
-    "faithfulness_proxy": 0.9833,
-    "faithfulness_llm_judge": null,
-    "citation_precision": 0.7917,
+    "keyword_coverage": 0.9167,
+    "faithfulness_proxy": 0.0167,
+    "faithfulness_llm_judge": 0.9667,
+    "citation_precision": 0.8611,
     "false_abstain_rate": 0.0,
     "empty_answer_rate": 0.0
   },
@@ -37,13 +37,13 @@
     "n": 0
   },
   "latency_ms": {
-    "p50": 370.8,
-    "p95": 450.0,
-    "mean": 368.2
+    "p50": 3203.8,
+    "p95": 6512.7,
+    "mean": 3754.8
   },
   "tokens": {
-    "prompt_total": 0,
-    "completion_total": 0
+    "prompt_total": 33426,
+    "completion_total": 5784
   },
   "cost_usd_total": 0.0,
   "rescored": true

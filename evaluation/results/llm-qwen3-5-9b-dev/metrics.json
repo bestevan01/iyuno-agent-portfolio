@@ -24,7 +24,8 @@
     "faithfulness_proxy": 0.0,
     "faithfulness_llm_judge": 0.9333,
     "citation_precision": 0.7667,
-    "false_abstain_rate": 0.1333
+    "false_abstain_rate": 0.0333,
+    "empty_answer_rate": 0.025
   },
   "tools": {
     "selection_accuracy": 1.0,
@@ -32,7 +33,7 @@
     "n": 8
   },
   "out_of_scope": {
-    "abstain_accuracy": 0.5,
+    "abstain_accuracy": 1.0,
     "n": 2
   },
   "latency_ms": {
@@ -44,5 +45,6 @@
     "prompt_total": 83084,
     "completion_total": 14263
   },
-  "cost_usd_total": 0.0
+  "cost_usd_total": 0.0,
+  "rescored": true
 }

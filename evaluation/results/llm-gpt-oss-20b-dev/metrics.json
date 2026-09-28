@@ -1,9 +1,9 @@
 {
-  "run": "offline-hybrid-dev",
+  "run": "llm-gpt-oss-20b-dev",
   "set": "dev",
-  "created": "2026-09-28T20:42:14+0900",
+  "created": "2026-09-28T13:24:14+0000",
   "config": {
-    "mode": "offline",
+    "mode": "llm:gpt-oss:20b",
     "embedder": "e5",
     "e5_model": "intfloat/multilingual-e5-small",
     "retrieval": "hybrid",
@@ -14,18 +14,18 @@
   },
   "n_questions": 40,
   "retrieval": {
-    "hit@4": 1.0,
-    "recall@4": 0.9,
-    "mrr": 0.95,
+    "hit@4": 0.9333,
+    "recall@4": 0.8333,
+    "mrr": 0.725,
     "n": 30
   },
   "answer": {
-    "keyword_coverage": 0.7667,
-    "faithfulness_proxy": 0.9944,
-    "faithfulness_llm_judge": null,
-    "citation_precision": 0.8833,
-    "false_abstain_rate": 0.0,
-    "empty_answer_rate": 0.0
+    "keyword_coverage": 0.8667,
+    "faithfulness_proxy": 0.0,
+    "faithfulness_llm_judge": 0.8575,
+    "citation_precision": 0.8222,
+    "false_abstain_rate": 0.0333,
+    "empty_answer_rate": 0.025
   },
   "tools": {
     "selection_accuracy": 1.0,
@@ -37,13 +37,13 @@
     "n": 2
   },
   "latency_ms": {
-    "p50": 321.1,
-    "p95": 508.9,
-    "mean": 297.5
+    "p50": 3393.5,
+    "p95": 6681.2,
+    "mean": 3670.4
   },
   "tokens": {
-    "prompt_total": 0,
-    "completion_total": 0
+    "prompt_total": 95918,
+    "completion_total": 18268
   },
   "cost_usd_total": 0.0,
   "rescored": true

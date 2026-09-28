@@ -65,6 +65,7 @@ class AgentResult:
     prompt_tokens: int = 0
     completion_tokens: int = 0
     cost_usd: float = 0.0
+    fallback: bool = False
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -141,6 +142,8 @@ class Agent:
             kwargs = dict(model=self.s.llm_model, messages=messages, temperature=0.2)
             if step < self.s.max_steps:
                 kwargs["tools"] = TOOL_SCHEMAS
+            else:  # 도구 호출 한도 도달 → 지금까지의 근거로 답하라고 명시
+                messages.append({"role": "user", "content": "도구 호출 한도에 도달했습니다. 지금까지 받은 결과만으로 [n] 인용을 붙여 최종 답변을 작성하세요."})
             resp = self.client.chat.completions.create(**kwargs)
             if getattr(resp, "usage", None):
                 res.prompt_tokens += resp.usage.prompt_tokens or 0
@@ -166,6 +169,11 @@ class Agent:
                     out = self._run_tool(c.function.name, args, book, res)
                 messages.append({"role": "tool", "tool_call_id": c.id, "content": self._tool_payload(c.function.name, out)})
         res.answer = re.sub(r"<think>.*?</think>", "", answer, flags=re.S).strip()
+        if not res.answer:  # 모델이 빈 답을 낸 경우(gpt-oss에서 관찰) → 검색 근거 발췌로 대체
+            res.fallback = True
+            res.answer = ("(모델이 최종 답변을 만들지 못해 검색 근거를 발췌합니다)\n"
+                          + (self._extractive(question, book.items) if book.items
+                             else "제공된 문서에서 확인되지 않습니다."))
         self._attach_citations(res, book)
         return res
 

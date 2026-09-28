@@ -24,7 +24,8 @@
     "faithfulness_proxy": 0.9833,
     "faithfulness_llm_judge": null,
     "citation_precision": 0.3833,
-    "false_abstain_rate": 0.0
+    "false_abstain_rate": 0.0,
+    "empty_answer_rate": 0.0
   },
   "tools": {
     "selection_accuracy": 1.0,
@@ -44,5 +45,6 @@
     "prompt_total": 0,
     "completion_total": 0
   },
-  "cost_usd_total": 0.0
+  "cost_usd_total": 0.0,
+  "rescored": true
 }

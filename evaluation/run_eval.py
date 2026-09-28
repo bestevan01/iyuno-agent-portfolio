@@ -34,7 +34,15 @@ from agent.retriever import VectorIndex
 EVAL = ROOT / "evaluation"
 SETS = {"dev": EVAL / "questions.jsonl", "holdout": EVAL / "holdout.jsonl"}
 FAITH_THRESHOLD = 0.90
-ABSTAIN_RE = re.compile(r"확인되지 않|찾지 못|not found|no relevant", re.I)
+# 거절 판정: 거절 표현이 있고 **인용이 하나도 없을 때만** 거절로 본다.
+# (v1은 표현만 봐서, 인용을 단 정상 답변 속 "…는 확인되지 않습니다" 한 문장도 거절로 셌고,
+#  "답변을 제공할 수 없습니다" 같은 표현은 놓쳤다 → evaluation/error_analysis.md 6절)
+ABSTAIN_RE = re.compile(
+    r"확인되지 않|찾지 못|제공할 수 없|답변(을|할) 수 없|정보(는|가) 없|관련(된)? (내용|정보)(이|가) 없|not found|no relevant", re.I)
+
+
+def is_abstain(answer: str, citations: list[str]) -> bool:
+    return not citations and (not answer.strip() or bool(ABSTAIN_RE.search(answer)))
 
 
 def doc_of(chunk_id: str) -> str:
@@ -146,6 +154,35 @@ def mean(xs):
     return round(statistics.mean(xs), 4) if xs else None
 
 
+def aggregate(rows: list[dict], name: str, set_name: str, config: dict, k: int = 4) -> dict:
+    rag = [r for r in rows if r["type"] == "rag"]
+    tool = [r for r in rows if r["type"] == "tool"]
+    oos = [r for r in rows if r["type"] == "out_of_scope"]
+    lat = [r["latency_ms"] for r in rows]
+    return {
+        "run": name,
+        "set": set_name,
+        "created": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
+        "config": config,
+        "n_questions": len(rows),
+        "retrieval": {f"hit@{k}": mean([r["hit"] for r in rag]), f"recall@{k}": mean([r["recall"] for r in rag]),
+                      "mrr": mean([r["rr"] for r in rag]), "n": len(rag)},
+        "answer": {"keyword_coverage": mean([r["keyword"] for r in rag]),
+                   "faithfulness_proxy": mean([r["faithfulness"] for r in rag]),
+                   "faithfulness_llm_judge": mean([r.get("faithfulness_llm") for r in rag]),
+                   "citation_precision": mean([r["citation_precision"] for r in rag]),
+                   "false_abstain_rate": mean([float(r["abstained"]) for r in rag]),
+                   "empty_answer_rate": mean([float(not r["answer"].strip()) for r in rows])},
+        "tools": {"selection_accuracy": mean([r["tool_selected"] for r in tool]),
+                  "result_accuracy": mean([r["tool_correct"] for r in tool]), "n": len(tool)},
+        "out_of_scope": {"abstain_accuracy": mean([float(r["abstained"]) for r in oos]), "n": len(oos)},
+        "latency_ms": {"p50": round(pct(lat, 50), 1), "p95": round(pct(lat, 95), 1), "mean": round(statistics.mean(lat), 1)},
+        "tokens": {"prompt_total": sum(r["prompt_tokens"] for r in rows),
+                   "completion_total": sum(r["completion_tokens"] for r in rows)},
+        "cost_usd_total": round(sum(r["cost_usd"] for r in rows), 6),
+    }
+
+
 def run(set_name: str, name: str, k: int, judge: bool = False, budget_s: float | None = None) -> dict | None:
     """budget_s가 주어지면 그 시간 안에서만 문항을 처리하고 partial.jsonl에 이어 쓴다(재개 가능).
     모든 문항이 끝났을 때만 metrics.json을 만든다."""
@@ -183,11 +220,11 @@ def run(set_name: str, name: str, k: int, judge: bool = False, budget_s: float |
             cited_docs = [doc_of(c) for c in row["citations"]]
             row["citation_precision"] = (sum(d in q["expected_docs"] for d in cited_docs) / len(cited_docs)
                                          if cited_docs else 0.0)
-            row["abstained"] = bool(ABSTAIN_RE.search(res.answer))
+            row["abstained"] = is_abstain(res.answer, row["citations"])
         elif q["type"] == "tool":
             row["tool_selected"], row["tool_correct"] = tool_check(q, res)
         else:
-            row["abstained"] = bool(ABSTAIN_RE.search(res.answer))
+            row["abstained"] = is_abstain(res.answer, row["citations"])
         rows.append(row)
         with open(partial, "a", encoding="utf-8") as f:
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
@@ -195,33 +232,11 @@ def run(set_name: str, name: str, k: int, judge: bool = False, budget_s: float |
     order = {q["id"]: i for i, q in enumerate(questions)}
     rows.sort(key=lambda r: order[r["id"]])
 
-    rag = [r for r in rows if r["type"] == "rag"]
-    tool = [r for r in rows if r["type"] == "tool"]
-    oos = [r for r in rows if r["type"] == "out_of_scope"]
-    lat = [r["latency_ms"] for r in rows]
-    metrics = {
-        "run": name,
-        "set": set_name,
-        "created": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
-        "config": {"mode": "llm:" + s.llm_model if s.use_llm else "offline", "embedder": s.embedder,
-                   "e5_model": s.e5_model, "retrieval": s.retrieval_mode, "hybrid_alpha": s.hybrid_alpha,
-                   "top_k": k, "abstain_threshold": s.abstain_threshold, "faith_threshold": FAITH_THRESHOLD},
-        "n_questions": len(rows),
-        "retrieval": {f"hit@{k}": mean([r["hit"] for r in rag]), f"recall@{k}": mean([r["recall"] for r in rag]),
-                      "mrr": mean([r["rr"] for r in rag]), "n": len(rag)},
-        "answer": {"keyword_coverage": mean([r["keyword"] for r in rag]),
-                   "faithfulness_proxy": mean([r["faithfulness"] for r in rag]),
-                   "faithfulness_llm_judge": mean([r.get("faithfulness_llm") for r in rag]),
-                   "citation_precision": mean([r["citation_precision"] for r in rag]),
-                   "false_abstain_rate": mean([float(r["abstained"]) for r in rag])},
-        "tools": {"selection_accuracy": mean([r["tool_selected"] for r in tool]),
-                  "result_accuracy": mean([r["tool_correct"] for r in tool]), "n": len(tool)},
-        "out_of_scope": {"abstain_accuracy": mean([float(r["abstained"]) for r in oos]), "n": len(oos)},
-        "latency_ms": {"p50": round(pct(lat, 50), 1), "p95": round(pct(lat, 95), 1), "mean": round(statistics.mean(lat), 1)},
-        "tokens": {"prompt_total": sum(r["prompt_tokens"] for r in rows),
-                   "completion_total": sum(r["completion_tokens"] for r in rows)},
-        "cost_usd_total": round(sum(r["cost_usd"] for r in rows), 6),
-    }
+    config = {"mode": "llm:" + s.llm_model if s.use_llm else "offline", "embedder": s.embedder,
+              "e5_model": s.e5_model, "retrieval": s.retrieval_mode, "hybrid_alpha": s.hybrid_alpha,
+              "top_k": k, "abstain_threshold": s.abstain_threshold, "faith_threshold": FAITH_THRESHOLD,
+              "judge": ("self:" + s.llm_model) if (judge and s.use_llm) else None}
+    metrics = aggregate(rows, name, set_name, config, k)
     (out_dir / "metrics.json").write_text(json.dumps(metrics, ensure_ascii=False, indent=2), encoding="utf-8")
     with open(out_dir / "per_question.jsonl", "w", encoding="utf-8") as f:
         for r in rows:
