@@ -141,15 +141,28 @@ def mean(xs):
     return round(statistics.mean(xs), 4) if xs else None
 
 
-def run(set_name: str, name: str, k: int, judge: bool = False) -> dict:
+def run(set_name: str, name: str, k: int, judge: bool = False, budget_s: float | None = None) -> dict | None:
+    """budget_s가 주어지면 그 시간 안에서만 문항을 처리하고 partial.jsonl에 이어 쓴다(재개 가능).
+    모든 문항이 끝났을 때만 metrics.json을 만든다."""
+    t_start = time.perf_counter()
     s = get_settings()
     index = VectorIndex.load(s.index_dir, s.e5_model, s.retrieval_mode, s.hybrid_alpha)
     agent = Agent(index, s)
     questions = [json.loads(line) for line in open(SETS[set_name], encoding="utf-8")]
-    agent.ask("warm-up: SQL injection")  # 모델 로딩 시간 제외
+    out_dir = EVAL / "results" / name
+    out_dir.mkdir(parents=True, exist_ok=True)
+    partial = out_dir / "partial.jsonl"
+    rows = [json.loads(line) for line in open(partial, encoding="utf-8")] if partial.exists() else []
+    done = {r["id"] for r in rows}
+    if not rows:
+        agent.ask("warm-up: SQL injection")  # 모델 로딩 시간 제외
 
-    rows = []
     for q in questions:
+        if q["id"] in done:
+            continue
+        if budget_s is not None and time.perf_counter() - t_start > budget_s:
+            print(f"PARTIAL {len(rows)}/{len(questions)}")
+            return None
         res = agent.ask(q["question"])
         row = {"id": q["id"], "type": q["type"], "question": q["question"], "answer": res.answer,
                "tools": [t.name for t in res.tool_calls], "citations": [c.chunk_id for c in res.citations],
@@ -171,6 +184,11 @@ def run(set_name: str, name: str, k: int, judge: bool = False) -> dict:
         else:
             row["abstained"] = bool(ABSTAIN_RE.search(res.answer))
         rows.append(row)
+        with open(partial, "a", encoding="utf-8") as f:
+            f.write(json.dumps(row, ensure_ascii=False) + "\n")
+
+    order = {q["id"]: i for i, q in enumerate(questions)}
+    rows.sort(key=lambda r: order[r["id"]])
 
     rag = [r for r in rows if r["type"] == "rag"]
     tool = [r for r in rows if r["type"] == "tool"]
@@ -199,12 +217,11 @@ def run(set_name: str, name: str, k: int, judge: bool = False) -> dict:
                    "completion_total": sum(r["completion_tokens"] for r in rows)},
         "cost_usd_total": round(sum(r["cost_usd"] for r in rows), 6),
     }
-    out_dir = EVAL / "results" / name
-    out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "metrics.json").write_text(json.dumps(metrics, ensure_ascii=False, indent=2), encoding="utf-8")
     with open(out_dir / "per_question.jsonl", "w", encoding="utf-8") as f:
         for r in rows:
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
+    partial.unlink(missing_ok=True)
     return metrics
 
 
@@ -214,11 +231,13 @@ def main() -> None:
     ap.add_argument("--name", default=None)
     ap.add_argument("--k", type=int, default=4)
     ap.add_argument("--judge", action="store_true", help="LLM 모드에서 LLM 판정 faithfulness 추가")
+    ap.add_argument("--budget", type=float, default=None, help="이번 실행에 쓸 최대 초(초과 시 중단, 다음 실행에서 이어서)")
     a = ap.parse_args()
     s = get_settings()
     name = a.name or f"{'llm' if s.use_llm else 'offline'}-{s.retrieval_mode}-{a.set}"
-    m = run(a.set, name, a.k, a.judge)
-    print(json.dumps(m, ensure_ascii=False, indent=2))
+    m = run(a.set, name, a.k, a.judge, a.budget)
+    if m is not None:
+        print(json.dumps(m, ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":

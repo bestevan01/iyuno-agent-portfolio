@@ -61,6 +61,10 @@ def grouped(ax, groups, series, values, colors):
     ax.legend(frameon=False, loc="upper left", bbox_to_anchor=(0, 1.02), ncol=n, fontsize=10)
 
 
+def runs_label(m: dict) -> str:
+    return m["config"]["mode"].replace("llm:", "LLM · ")
+
+
 def main() -> None:
     _font()
     FIG.mkdir(parents=True, exist_ok=True)
@@ -95,8 +99,24 @@ def main() -> None:
     fig.savefig(FIG / "dev_vs_holdout.png", dpi=160)
     plt.close(fig)
 
-    # 요약 metrics.json
+    # 3) 오프라인 vs LLM 모드 (개발셋)
     llm = sorted(p.parent.name for p in RES.glob("llm-*/metrics.json"))
+    llm_dev = [k for k in llm if k.endswith("-dev")]
+    if llm_dev:
+        cols = [("offline-hybrid-dev", "오프라인 (발췌)")] + [(k, runs_label(load(k))) for k in llm_dev]
+        mets = [("retrieval", "hit@4", "Hit@4"), ("answer", "keyword_coverage", "키워드 포함률"),
+                ("answer", "citation_precision", "Citation precision"), ("tools", "result_accuracy", "도구 정확도")]
+        data = {k: (runs.get(k) or load(k)) for k, _ in cols}
+        fig, ax = plt.subplots(figsize=(9.5, 4.8), facecolor=SURFACE)
+        grouped(ax, [m[2] for m in mets], [lab for _, lab in cols],
+                [[data[k][a][b] or 0 for a, b, _ in mets] for k, _ in cols], C[: len(cols)])
+        _style(ax, "오프라인 vs 로컬 LLM 모드 — 개발셋 40문항")
+        fig.text(0.01, 0.01, "LLM: 집 데스크탑 RTX 4080 SUPER의 Ollama. 검색은 모두 hybrid.", fontsize=9, color=INK2)
+        fig.tight_layout(rect=(0, 0.03, 1, 1))
+        fig.savefig(FIG / "offline_vs_llm.png", dpi=160)
+        plt.close(fig)
+
+    # 요약 metrics.json
     summary = {
         "primary_run": "offline-hybrid-dev",
         "primary": runs["offline-hybrid-dev"],
