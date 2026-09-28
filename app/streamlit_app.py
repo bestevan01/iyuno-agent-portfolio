@@ -36,7 +36,7 @@ EXAMPLES = [
     '비밀번호 "qwerty123" 괜찮은가요? MFA는 안 써요.',
 ]
 cols = st.columns(len(EXAMPLES))
-for c, ex in zip(cols, EXAMPLES):
+for c, ex in zip(cols, EXAMPLES, strict=True):
     if c.button(ex, use_container_width=True):
         st.session_state["q"] = ex
 

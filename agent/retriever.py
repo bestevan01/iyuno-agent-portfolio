@@ -102,7 +102,7 @@ class VectorIndex:
 
     # ---------- build / persist ----------
     @classmethod
-    def build(cls, chunks: list[Chunk], embedder) -> "VectorIndex":
+    def build(cls, chunks: list[Chunk], embedder) -> VectorIndex:
         texts = [passage_text(c) for c in chunks]
         embedder.fit(texts)
         return cls(embedder, chunks, embedder.embed_passages(texts))
@@ -123,7 +123,7 @@ class VectorIndex:
 
     @classmethod
     def load(cls, index_dir: Path, e5_model: str = "intfloat/multilingual-e5-small",
-             mode: str = "hybrid", alpha: float = 0.3) -> "VectorIndex":
+             mode: str = "hybrid", alpha: float = 0.3) -> VectorIndex:
         meta = json.loads((index_dir / "meta.json").read_text(encoding="utf-8"))
         chunks = [Chunk(**json.loads(line)) for line in open(index_dir / "chunks.jsonl", encoding="utf-8")]
         embedder = make_embedder(meta["embedder"], meta.get("model") or e5_model)

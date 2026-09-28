@@ -51,10 +51,10 @@ def _style(ax, title: str):
 def grouped(ax, groups, series, values, colors):
     n = len(series)
     w = 0.8 / n
-    for i, (name, vals, col) in enumerate(zip(series, values, colors)):
+    for i, (name, vals, col) in enumerate(zip(series, values, colors, strict=True)):
         xs = [g + (i - (n - 1) / 2) * w for g in range(len(groups))]
         bars = ax.bar(xs, vals, width=w - 0.04, color=col, label=name, edgecolor=SURFACE, linewidth=2)
-        for b, v in zip(bars, vals):
+        for b, v in zip(bars, vals, strict=True):
             ax.text(b.get_x() + b.get_width() / 2, v + 0.02, f"{v:.2f}", ha="center", va="bottom",
                     fontsize=9, color=INK2)
     ax.set_xticks(range(len(groups)), groups, fontsize=11, color=INK)

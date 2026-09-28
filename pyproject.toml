@@ -14,3 +14,8 @@ filterwarnings = ["ignore::DeprecationWarning"]
 [tool.ruff]
 line-length = 120
 target-version = "py310"
+
+[tool.ruff.lint]
+# ruff 기본 규칙이 버전마다 바뀌므로 검사할 규칙을 명시한다.
+select = ["E", "F", "W", "B", "UP"]
+ignore = ["E501"]
