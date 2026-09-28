@@ -34,7 +34,7 @@ CVSS 점수 계산, CWE 조회, 비밀번호 정책 검사는 LLM이 짐작하�
 | 4 | API·데이터베이스 통합, 다단계 workflow | FastAPI `/ask` `/feedback` `/stats` + SQLite 실행 로그·피드백 저장소. CWE 조회 → 해당 Top 10 문서 검색 → 인용처럼 도구를 연쇄 호출 | `app/api.py`, `agent/feedback.py` |
 | 5 | 평가 | 개발셋 40문항 + 홀드아웃 12문항. Hit@k·Recall@k·MRR·키워드 포함률·faithfulness·citation precision·도구 정확도·거절률·지연시간·토큰·비용 | `evaluation/` |
 | 6 | 피드백 루프 | 👍/👎 + 수정 의견 → SQLite → `python -m agent.feedback export`로 평가셋 후보 생성 | `agent/feedback.py` |
-| 7 | latency·cost·reliability | 요청별 지연시간·토큰·비용 기록, `/stats`에서 p50/p95 확인. 검색 점수가 낮으면 답변 거절. 도구 오류는 모델에 되돌려 재시도. pytest 32개 + CI | `agent/agent.py`, `.github/workflows/ci.yml` |
+| 7 | latency·cost·reliability | 요청별 지연시간·토큰·비용 기록, `/stats`에서 p50/p95 확인. 검색 점수가 낮으면 답변 거절. 도구 오류는 모델에 되돌려 재시도. pytest 34개 + CI | `agent/agent.py`, `.github/workflows/ci.yml` |
 
 ## 3. 아키텍처
 
@@ -162,6 +162,8 @@ curl -s localhost:8000/stats
 - **LLM은 답을 한국어로 다시 써서** 키워드 포함률이 올라갑니다(gpt-oss 0.97). 반면 검색어를 모델이 직접 만들어서 검색 순위(MRR)는 오프라인보다 낮습니다.
 - **빈 답변 버그를 평가로 찾았습니다.** gpt-oss는 검색을 4번 부른 뒤, qwen은 비밀번호 도구를 부른 뒤 아무 말도 하지 않은 경우가 한 번씩 있었습니다. 두 가지를 고쳤습니다. 도구 호출 한도에 도달하면 "지금까지 결과로 답하라"고 지시하고, 그래도 비어 있으면 규칙 기반 답변으로 대체합니다(테스트 2개 추가). gpt-oss로 다시 돌린 결과 빈 답변은 0건이었습니다.
 - **같은 모델도 실행마다 달라집니다.** gpt-oss 첫 실행에서는 도구 8/8이었는데, 재실행에서는 CWE-918 질문에 `cwe_lookup` 대신 문서 검색으로 답했습니다(답 자체는 맞음). temperature 0.2라도 도구 선택이 흔들립니다.
+- **실제 실행 기록:** 모델이 어떤 도구를 어떤 인자로 불렀는지는 [`docs/llm_trace_qwen3-5-9b.md`](docs/llm_trace_qwen3-5-9b.md), [`docs/llm_trace_gpt-oss-20b.md`](docs/llm_trace_gpt-oss-20b.md)에 있습니다(`scripts/llm_trace.py`로 재생성). 예를 들어 qwen은 "CWE-352가 뭔지" 질문에 `cwe_lookup({"cwe_id": "CWE-352"})`를, 비밀번호 질문에 `password_policy_check({"password": "*********", "mfa_enabled": false})`를 스스로 호출했습니다.
+- **인용이 있어도 내용이 틀릴 수 있습니다.** gpt-oss는 비밀번호 질문에서 "대·소문자·숫자·특수문자 조합"을 권했는데, 인용한 OWASP 인증 가이드는 조합 강제를 하지 말라고 합니다. 출처 표시만으로는 정확성이 보장되지 않는다는 사례로 [오류 분석 6-6](evaluation/error_analysis.md)에 기록했습니다.
 - **LLM 판정은 모델이 자기 답을 채점한 값입니다**(qwen은 qwen이, gpt-oss는 gpt-oss가 판정). 모델 간 비교에는 쓰지 말고, 같은 모델 안에서 추세를 보는 용도로만 봐야 합니다.
 
 ## 6. 한계 (정직하게)
@@ -173,6 +175,7 @@ curl -s localhost:8000/stats
 5. **hub 문서 문제.** 조각이 가장 많은 CSRF Cheat Sheet가 관련 없는 질문의 검색 결과에도 자주 끼어듭니다. 문서별 상한이나 MMR로 개선할 여지가 있습니다.
 6. **범위.** 문서는 OWASP Top 10 2021과 Cheat Sheet 16종뿐입니다. 2025년판 Top 10, CVE 실시간 조회, 사내 정책 문서는 다루지 않습니다.
 7. **거절 임계값(0.78)** 은 임베딩 모델에 종속된 값입니다. 모델을 바꾸면 다시 보정해야 합니다.
+8. **데모 GIF는 오프라인 모드 화면입니다.** 발표·녹화 환경에서 로컬 GPU에 항상 접속할 수는 없어서, LLM 모드는 실행 기록 문서와 평가 결과로 증빙했습니다. 클라우드 배포는 하지 않았습니다.
 
 ## 7. 보안·개인정보 처리
 
@@ -193,7 +196,7 @@ AI가 쓴 코드와 수치는 그대로 믿지 않고, 아래 방법으로 확�
 
 | AI가 한 일 | 검증 방법 |
 |---|---|
-| 폴더 구조, 코드·테스트 초안 | pytest 32개와 ruff 린트를 CI에서 매 커밋마다 실행 |
+| 폴더 구조, 코드·테스트 초안 | pytest 34개와 ruff 린트를 CI에서 매 커밋마다 실행 |
 | CVSS v3.1 수식 구현 | 알려진 예시 벡터 7개(9.8, 10.0, 6.1, 7.8, 5.9, 1.6, 0.0)와 결과 대조 |
 | 평가 문항 초안 | 기대 키워드가 정답 문서 원문에 실제로 있는지 grep으로 확인. 튜닝 뒤에 홀드아웃을 따로 작성 |
 | 지표 설계 | faithfulness 임계값을 음성 대조군으로 보정하고, 보정이 안 되는 경우(한국어 부정문)를 한계로 기록 |

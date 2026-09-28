@@ -8,7 +8,7 @@
 - FastAPI(`/ask`, `/feedback`, `/stats`), Streamlit 데모, SQLite 실행 로그·피드백 저장소, 피드백을 평가셋 후보로 내보내는 루프를 갖췄다.
 - 평가셋은 52문항이다(개발 40, 홀드아웃 12). 지표 10여 종과 검색 방식 비교, 오류 분석을 남겼다.
 - 집 데스크탑(RTX 4080 SUPER)의 Ollama로 qwen3.5:9b와 gpt-oss:20b를 붙여 같은 평가셋으로 LLM 모드를 측정했다.
-- pytest 32개와 GitHub Actions CI(ruff + pytest + 스모크 테스트, Python 3.11/3.12)를 붙였다.
+- pytest 34개와 GitHub Actions CI(ruff + pytest + 스모크 테스트, Python 3.11/3.12)를 붙였다.
 
 ## 숫자로 본 결과
 

@@ -129,3 +129,22 @@ def test_llm_server_down_falls_back_to_offline(index, settings):
     assert res.mode == "offline(llm-error)" and res.fallback
     assert "ConnectionError" in res.error
     assert "9.8" in res.answer
+
+
+class DanglingCitationClient(FakeClient):
+    """검색 없이 계산 도구만 쓰고 답변에 [1]을 붙이는 모델(qwen 실행 기록에서 관찰)."""
+
+    def create(self, **kw):
+        self.calls += 1
+        usage = NS(prompt_tokens=10, completion_tokens=5)
+        if self.calls == 1:
+            args = json.dumps({"vector": "AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"})
+            tc = NS(id="c1", function=NS(name="cvss_calculator", arguments=args))
+            return NS(choices=[NS(message=NS(content="", tool_calls=[tc]))], usage=usage)
+        return NS(choices=[NS(message=NS(content="점수는 9.8입니다 [1].", tool_calls=None))], usage=usage)
+
+
+def test_dangling_citation_numbers_are_removed(index, settings):
+    res = Agent(index, settings, client=DanglingCitationClient()).ask("CVSS 점수?")
+    assert res.answer == "점수는 9.8입니다."
+    assert res.citations == []

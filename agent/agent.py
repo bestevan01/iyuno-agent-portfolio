@@ -207,7 +207,10 @@ class Agent:
 
     @staticmethod
     def _attach_citations(res: AgentResult, book: _RefBook) -> None:
-        cited = sorted({int(n) for n in re.findall(r"\[(\d+)\]", res.answer) if 0 < int(n) <= len(book.items)})
+        # 검색 결과에 없는 번호(모델이 도구 결과에 임의로 붙인 [1] 등)는 답변에서 지운다
+        valid = range(1, len(book.items) + 1)
+        res.answer = re.sub(r"\s?\[(\d+)\]", lambda m: m.group(0) if int(m.group(1)) in valid else "", res.answer)
+        cited = sorted({int(n) for n in re.findall(r"\[(\d+)\]", res.answer)})
         res.citations = [book.citation(n) for n in cited]
 
     # ------------------------------------------------------------ offline mode
