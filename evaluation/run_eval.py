@@ -99,11 +99,16 @@ def llm_judge(client, model: str, answer: str, contexts: list[str]) -> float | N
         return None
     resp = client.chat.completions.create(model=model, temperature=0, messages=[
         {"role": "user", "content": JUDGE_PROMPT.format(context="\n---\n".join(contexts)[:12000], answer=answer)}])
-    m = re.search(r"\{.*\}", resp.choices[0].message.content or "", re.S)
+    text = re.sub(r"<think>.*?</think>", "", resp.choices[0].message.content or "", flags=re.S)
+    # 설명 문장이 섞여도 마지막 {"total":…, "supported":…} 객체만 읽는다
+    found = re.findall(r'\{[^{}]*"total"[^{}]*\}', text)
+    if not found:
+        return None
     try:
-        d = json.loads(m.group(0))
-        return d["supported"] / d["total"] if d["total"] else None
-    except Exception:
+        d = json.loads(found[-1])
+        total, sup = int(d["total"]), int(d["supported"])
+        return min(sup, total) / total if total else None
+    except (ValueError, KeyError, TypeError):
         return None
 
 
