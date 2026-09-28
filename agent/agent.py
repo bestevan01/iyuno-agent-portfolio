@@ -66,6 +66,7 @@ class AgentResult:
     completion_tokens: int = 0
     cost_usd: float = 0.0
     fallback: bool = False
+    error: str = ""
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -103,7 +104,16 @@ class Agent:
     # ------------------------------------------------------------ public
     def ask(self, question: str) -> AgentResult:
         t0 = time.perf_counter()
-        res = self._ask_llm(question) if self.client is not None else self._ask_offline(question)
+        if self.client is None:
+            res = self._ask_offline(question)
+        else:
+            try:
+                res = self._ask_llm(question)
+            except Exception as e:  # LLM 서버 다운·타임아웃 등 → 서비스는 오프라인 경로로 계속 응답
+                res = self._ask_offline(question)
+                res.mode = "offline(llm-error)"
+                res.fallback = True
+                res.error = f"{type(e).__name__}: {str(e)[:200]}"
         res.latency_ms = round((time.perf_counter() - t0) * 1000, 1)
         res.cost_usd = round(
             res.prompt_tokens / 1e6 * self.s.price_in_per_m + res.completion_tokens / 1e6 * self.s.price_out_per_m, 6

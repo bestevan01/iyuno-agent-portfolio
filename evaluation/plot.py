@@ -101,9 +101,16 @@ def main() -> None:
 
     # 3) 오프라인 vs LLM 모드 (개발셋)
     llm = sorted(p.parent.name for p in RES.glob("llm-*/metrics.json"))
-    cols = [("offline-hybrid-dev", "오프라인 (규칙+발췌)"), ("llm-qwen3-5-9b-dev", "qwen3.5:9b"),
-            ("llm-gpt-oss-20b-fix-dev", "gpt-oss:20b")]
-    cols = [(k, lab) for k, lab in cols if load(k)]
+    # 같은 모델의 재실행(-fix-dev)이 있으면 그것을 우선 사용
+    dev_runs = {}
+    for k in llm:
+        if k.endswith("-dev"):
+            base = k.replace("-fix-dev", "-dev")
+            if k.endswith("-fix-dev") or base not in dev_runs:
+                dev_runs[base] = k
+    cols = [("offline-hybrid-dev", "오프라인 (규칙+발췌)")] + [
+        (k, load(k)["config"]["mode"].replace("llm:", "")) for k in sorted(dev_runs.values(), key=lambda k: "gpt-oss" in k)]
+    cols = cols[:3]
     if len(cols) > 1:
         mets = [("retrieval", "hit@4", "Hit@4"), ("answer", "keyword_coverage", "키워드 포함률"),
                 ("answer", "citation_precision", "Citation precision"), ("tools", "result_accuracy", "도구 정확도")]

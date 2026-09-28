@@ -28,8 +28,9 @@ eval-ablation:  ## 키워드(TF-IDF)만 쓰는 검색과 비교
 		python -m evaluation.run_eval --set dev --name offline-tfidf-dev
 	python -m evaluation.plot
 
-eval-llm:       ## LLM 모드 평가 (LLM_BASE_URL, LLM_MODEL 필요)
-	python -m evaluation.run_eval --set dev --name llm-$(subst :,-,$(LLM_MODEL))-dev --judge
+eval-llm:       ## LLM 모드 평가 (LLM_BASE_URL, LLM_MODEL 필요). 결과 이름: llm-<모델명에서 :.을 -로>-dev/holdout
+	python -m evaluation.run_eval --set dev     --name llm-$(shell echo $(LLM_MODEL) | tr ':.' '--')-dev --judge
+	python -m evaluation.run_eval --set holdout --name llm-$(shell echo $(LLM_MODEL) | tr ':.' '--')-holdout --judge
 	python -m evaluation.plot
 
 api:

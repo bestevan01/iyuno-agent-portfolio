@@ -112,3 +112,20 @@ def test_llm_empty_after_tool_still_reports_tool_result(index, settings):
     assert res.fallback is True
     assert "만족하지 않습니다" in res.answer
     assert "qwerty123" not in res.answer
+
+
+class DownClient:
+    """연결이 끊긴 LLM 서버."""
+
+    def __init__(self):
+        self.chat = NS(completions=NS(create=self.create))
+
+    def create(self, **kw):
+        raise ConnectionError("Ollama unreachable")
+
+
+def test_llm_server_down_falls_back_to_offline(index, settings):
+    res = Agent(index, settings, client=DownClient()).ask("CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H")
+    assert res.mode == "offline(llm-error)" and res.fallback
+    assert "ConnectionError" in res.error
+    assert "9.8" in res.answer
