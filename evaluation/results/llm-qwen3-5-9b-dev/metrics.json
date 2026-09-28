@@ -1,0 +1,48 @@
+{
+  "run": "llm-qwen3-5-9b-dev",
+  "set": "dev",
+  "created": "2026-09-28T12:48:43+0000",
+  "config": {
+    "mode": "llm:qwen3.5:9b",
+    "embedder": "e5",
+    "e5_model": "intfloat/multilingual-e5-small",
+    "retrieval": "hybrid",
+    "hybrid_alpha": 0.3,
+    "top_k": 4,
+    "abstain_threshold": 0.78,
+    "faith_threshold": 0.9
+  },
+  "n_questions": 40,
+  "retrieval": {
+    "hit@4": 0.9333,
+    "recall@4": 0.8333,
+    "mrr": 0.9167,
+    "n": 30
+  },
+  "answer": {
+    "keyword_coverage": 0.7333,
+    "faithfulness_proxy": 0.0,
+    "faithfulness_llm_judge": 0.9333,
+    "citation_precision": 0.7667,
+    "false_abstain_rate": 0.1333
+  },
+  "tools": {
+    "selection_accuracy": 1.0,
+    "result_accuracy": 1.0,
+    "n": 8
+  },
+  "out_of_scope": {
+    "abstain_accuracy": 0.5,
+    "n": 2
+  },
+  "latency_ms": {
+    "p50": 3677.9,
+    "p95": 6266.0,
+    "mean": 3933.2
+  },
+  "tokens": {
+    "prompt_total": 83084,
+    "completion_total": 14263
+  },
+  "cost_usd_total": 0.0
+}
