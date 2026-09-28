@@ -26,7 +26,8 @@
       "faithfulness_proxy": 0.9944,
       "faithfulness_llm_judge": null,
       "citation_precision": 0.8833,
-      "false_abstain_rate": 0.0
+      "false_abstain_rate": 0.0,
+      "empty_answer_rate": 0.0
     },
     "tools": {
       "selection_accuracy": 1.0,
@@ -46,7 +47,8 @@
       "prompt_total": 0,
       "completion_total": 0
     },
-    "cost_usd_total": 0.0
+    "cost_usd_total": 0.0,
+    "rescored": true
   },
   "holdout": {
     "run": "offline-hybrid-holdout",
@@ -74,7 +76,8 @@
       "faithfulness_proxy": 0.9833,
       "faithfulness_llm_judge": null,
       "citation_precision": 0.7917,
-      "false_abstain_rate": 0.0
+      "false_abstain_rate": 0.0,
+      "empty_answer_rate": 0.0
     },
     "tools": {
       "selection_accuracy": null,
@@ -94,7 +97,8 @@
       "prompt_total": 0,
       "completion_total": 0
     },
-    "cost_usd_total": 0.0
+    "cost_usd_total": 0.0,
+    "rescored": true
   },
   "ablation": {
     "offline-tfidf-dev": {
@@ -109,7 +113,8 @@
         "faithfulness_proxy": 0.9833,
         "faithfulness_llm_judge": null,
         "citation_precision": 0.3833,
-        "false_abstain_rate": 0.0
+        "false_abstain_rate": 0.0,
+        "empty_answer_rate": 0.0
       },
       "latency_ms": {
         "p50": 15.1,
@@ -129,7 +134,8 @@
         "faithfulness_proxy": 0.9917,
         "faithfulness_llm_judge": null,
         "citation_precision": 0.7556,
-        "false_abstain_rate": 0.0
+        "false_abstain_rate": 0.0,
+        "empty_answer_rate": 0.0
       },
       "latency_ms": {
         "p50": 250.6,
@@ -149,7 +155,8 @@
         "faithfulness_proxy": 0.9944,
         "faithfulness_llm_judge": null,
         "citation_precision": 0.8833,
-        "false_abstain_rate": 0.0
+        "false_abstain_rate": 0.0,
+        "empty_answer_rate": 0.0
       },
       "latency_ms": {
         "p50": 321.1,
@@ -169,7 +176,8 @@
         "faithfulness_proxy": 0.9833,
         "faithfulness_llm_judge": null,
         "citation_precision": 0.8333,
-        "false_abstain_rate": 0.0
+        "false_abstain_rate": 0.0,
+        "empty_answer_rate": 0.0
       },
       "latency_ms": {
         "p50": 336.3,
@@ -189,7 +197,8 @@
         "faithfulness_proxy": 0.9833,
         "faithfulness_llm_judge": null,
         "citation_precision": 0.7917,
-        "false_abstain_rate": 0.0
+        "false_abstain_rate": 0.0,
+        "empty_answer_rate": 0.0
       },
       "latency_ms": {
         "p50": 370.8,
@@ -198,5 +207,257 @@
       }
     }
   },
-  "llm_runs": {}
+  "llm_runs": {
+    "llm-gpt-oss-20b-dev": {
+      "run": "llm-gpt-oss-20b-dev",
+      "set": "dev",
+      "created": "2026-09-28T13:24:14+0000",
+      "config": {
+        "mode": "llm:gpt-oss:20b",
+        "embedder": "e5",
+        "e5_model": "intfloat/multilingual-e5-small",
+        "retrieval": "hybrid",
+        "hybrid_alpha": 0.3,
+        "top_k": 4,
+        "abstain_threshold": 0.78,
+        "faith_threshold": 0.9
+      },
+      "n_questions": 40,
+      "retrieval": {
+        "hit@4": 0.9333,
+        "recall@4": 0.8333,
+        "mrr": 0.725,
+        "n": 30
+      },
+      "answer": {
+        "keyword_coverage": 0.8667,
+        "faithfulness_proxy": 0.0,
+        "faithfulness_llm_judge": 0.8575,
+        "citation_precision": 0.8222,
+        "false_abstain_rate": 0.0333,
+        "empty_answer_rate": 0.025
+      },
+      "tools": {
+        "selection_accuracy": 1.0,
+        "result_accuracy": 1.0,
+        "n": 8
+      },
+      "out_of_scope": {
+        "abstain_accuracy": 1.0,
+        "n": 2
+      },
+      "latency_ms": {
+        "p50": 3393.5,
+        "p95": 6681.2,
+        "mean": 3670.4
+      },
+      "tokens": {
+        "prompt_total": 95918,
+        "completion_total": 18268
+      },
+      "cost_usd_total": 0.0,
+      "rescored": true
+    },
+    "llm-gpt-oss-20b-fix-dev": {
+      "run": "llm-gpt-oss-20b-fix-dev",
+      "set": "dev",
+      "created": "2026-09-28T13:35:00+0000",
+      "config": {
+        "mode": "llm:gpt-oss:20b",
+        "embedder": "e5",
+        "e5_model": "intfloat/multilingual-e5-small",
+        "retrieval": "hybrid",
+        "hybrid_alpha": 0.3,
+        "top_k": 4,
+        "abstain_threshold": 0.78,
+        "faith_threshold": 0.9,
+        "judge": "self:gpt-oss:20b"
+      },
+      "n_questions": 40,
+      "retrieval": {
+        "hit@4": 0.9,
+        "recall@4": 0.8167,
+        "mrr": 0.7556,
+        "n": 30
+      },
+      "answer": {
+        "keyword_coverage": 0.9667,
+        "faithfulness_proxy": 0.0067,
+        "faithfulness_llm_judge": 0.8185,
+        "citation_precision": 0.8111,
+        "false_abstain_rate": 0.0,
+        "empty_answer_rate": 0.0
+      },
+      "tools": {
+        "selection_accuracy": 0.875,
+        "result_accuracy": 0.875,
+        "n": 8
+      },
+      "out_of_scope": {
+        "abstain_accuracy": 1.0,
+        "n": 2
+      },
+      "latency_ms": {
+        "p50": 3394.1,
+        "p95": 5698.4,
+        "mean": 3602.9
+      },
+      "tokens": {
+        "prompt_total": 89456,
+        "completion_total": 18847
+      },
+      "cost_usd_total": 0.0
+    },
+    "llm-gpt-oss-20b-holdout": {
+      "run": "llm-gpt-oss-20b-holdout",
+      "set": "holdout",
+      "created": "2026-09-28T13:26:23+0000",
+      "config": {
+        "mode": "llm:gpt-oss:20b",
+        "embedder": "e5",
+        "e5_model": "intfloat/multilingual-e5-small",
+        "retrieval": "hybrid",
+        "hybrid_alpha": 0.3,
+        "top_k": 4,
+        "abstain_threshold": 0.78,
+        "faith_threshold": 0.9
+      },
+      "n_questions": 12,
+      "retrieval": {
+        "hit@4": 0.8333,
+        "recall@4": 0.7917,
+        "mrr": 0.6319,
+        "n": 12
+      },
+      "answer": {
+        "keyword_coverage": 0.9167,
+        "faithfulness_proxy": 0.0167,
+        "faithfulness_llm_judge": 0.9667,
+        "citation_precision": 0.8611,
+        "false_abstain_rate": 0.0,
+        "empty_answer_rate": 0.0
+      },
+      "tools": {
+        "selection_accuracy": null,
+        "result_accuracy": null,
+        "n": 0
+      },
+      "out_of_scope": {
+        "abstain_accuracy": null,
+        "n": 0
+      },
+      "latency_ms": {
+        "p50": 3203.8,
+        "p95": 6512.7,
+        "mean": 3754.8
+      },
+      "tokens": {
+        "prompt_total": 33426,
+        "completion_total": 5784
+      },
+      "cost_usd_total": 0.0,
+      "rescored": true
+    },
+    "llm-qwen3-5-9b-dev": {
+      "run": "llm-qwen3-5-9b-dev",
+      "set": "dev",
+      "created": "2026-09-28T12:48:43+0000",
+      "config": {
+        "mode": "llm:qwen3.5:9b",
+        "embedder": "e5",
+        "e5_model": "intfloat/multilingual-e5-small",
+        "retrieval": "hybrid",
+        "hybrid_alpha": 0.3,
+        "top_k": 4,
+        "abstain_threshold": 0.78,
+        "faith_threshold": 0.9
+      },
+      "n_questions": 40,
+      "retrieval": {
+        "hit@4": 0.9333,
+        "recall@4": 0.8333,
+        "mrr": 0.9167,
+        "n": 30
+      },
+      "answer": {
+        "keyword_coverage": 0.7333,
+        "faithfulness_proxy": 0.0,
+        "faithfulness_llm_judge": 0.9333,
+        "citation_precision": 0.7667,
+        "false_abstain_rate": 0.0333,
+        "empty_answer_rate": 0.025
+      },
+      "tools": {
+        "selection_accuracy": 1.0,
+        "result_accuracy": 1.0,
+        "n": 8
+      },
+      "out_of_scope": {
+        "abstain_accuracy": 1.0,
+        "n": 2
+      },
+      "latency_ms": {
+        "p50": 3677.9,
+        "p95": 6266.0,
+        "mean": 3933.2
+      },
+      "tokens": {
+        "prompt_total": 83084,
+        "completion_total": 14263
+      },
+      "cost_usd_total": 0.0,
+      "rescored": true
+    },
+    "llm-qwen3-5-9b-holdout": {
+      "run": "llm-qwen3-5-9b-holdout",
+      "set": "holdout",
+      "created": "2026-09-28T13:17:00+0000",
+      "config": {
+        "mode": "llm:qwen3.5:9b",
+        "embedder": "e5",
+        "e5_model": "intfloat/multilingual-e5-small",
+        "retrieval": "hybrid",
+        "hybrid_alpha": 0.3,
+        "top_k": 4,
+        "abstain_threshold": 0.78,
+        "faith_threshold": 0.9
+      },
+      "n_questions": 12,
+      "retrieval": {
+        "hit@4": 0.9167,
+        "recall@4": 0.875,
+        "mrr": 0.8611,
+        "n": 12
+      },
+      "answer": {
+        "keyword_coverage": 0.9167,
+        "faithfulness_proxy": 0.0556,
+        "faithfulness_llm_judge": 1.0,
+        "citation_precision": 0.8056,
+        "false_abstain_rate": 0.0,
+        "empty_answer_rate": 0.0
+      },
+      "tools": {
+        "selection_accuracy": null,
+        "result_accuracy": null,
+        "n": 0
+      },
+      "out_of_scope": {
+        "abstain_accuracy": null,
+        "n": 0
+      },
+      "latency_ms": {
+        "p50": 3994.6,
+        "p95": 4959.6,
+        "mean": 3909.3
+      },
+      "tokens": {
+        "prompt_total": 26640,
+        "completion_total": 4252
+      },
+      "cost_usd_total": 0.0,
+      "rescored": true
+    }
+  },
+  "note": "llm-gpt-oss-20b-dev는 빈 답변 수정 전, llm-gpt-oss-20b-fix-dev는 수정 후 실행. 모든 결과는 evaluation/rescore.py로 같은 기준 재채점."
 }

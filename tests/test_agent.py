@@ -92,3 +92,23 @@ def test_llm_empty_answer_falls_back_to_extractive(index, settings):
     assert res.fallback is True
     assert res.answer.startswith("(모델이 최종 답변을 만들지 못해")
     assert res.citations, "대체 답변에도 인용이 붙어야 한다"
+
+
+class EmptyAfterToolClient(FakeClient):
+    """비밀번호 도구를 부른 뒤 빈 답을 내는 모델(qwen t07에서 관찰)."""
+
+    def create(self, **kw):
+        self.calls += 1
+        usage = NS(prompt_tokens=10, completion_tokens=0)
+        if self.calls == 1:
+            args = json.dumps({"password": "qwerty123", "mfa_enabled": False})
+            tc = NS(id="c1", function=NS(name="password_policy_check", arguments=args))
+            return NS(choices=[NS(message=NS(content="", tool_calls=[tc]))], usage=usage)
+        return NS(choices=[NS(message=NS(content="", tool_calls=None))], usage=usage)
+
+
+def test_llm_empty_after_tool_still_reports_tool_result(index, settings):
+    res = Agent(index, settings, client=EmptyAfterToolClient()).ask('비밀번호 "qwerty123" 괜찮나요? MFA는 안 써요')
+    assert res.fallback is True
+    assert "만족하지 않습니다" in res.answer
+    assert "qwerty123" not in res.answer

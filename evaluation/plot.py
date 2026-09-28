@@ -101,17 +101,19 @@ def main() -> None:
 
     # 3) 오프라인 vs LLM 모드 (개발셋)
     llm = sorted(p.parent.name for p in RES.glob("llm-*/metrics.json"))
-    llm_dev = [k for k in llm if k.endswith("-dev")]
-    if llm_dev:
-        cols = [("offline-hybrid-dev", "오프라인 (발췌)")] + [(k, runs_label(load(k))) for k in llm_dev]
+    cols = [("offline-hybrid-dev", "오프라인 (규칙+발췌)"), ("llm-qwen3-5-9b-dev", "qwen3.5:9b"),
+            ("llm-gpt-oss-20b-fix-dev", "gpt-oss:20b")]
+    cols = [(k, lab) for k, lab in cols if load(k)]
+    if len(cols) > 1:
         mets = [("retrieval", "hit@4", "Hit@4"), ("answer", "keyword_coverage", "키워드 포함률"),
                 ("answer", "citation_precision", "Citation precision"), ("tools", "result_accuracy", "도구 정확도")]
-        data = {k: (runs.get(k) or load(k)) for k, _ in cols}
+        data = {k: load(k) for k, _ in cols}
         fig, ax = plt.subplots(figsize=(9.5, 4.8), facecolor=SURFACE)
         grouped(ax, [m[2] for m in mets], [lab for _, lab in cols],
                 [[data[k][a][b] or 0 for a, b, _ in mets] for k, _ in cols], C[: len(cols)])
-        _style(ax, "오프라인 vs 로컬 LLM 모드 — 개발셋 40문항")
-        fig.text(0.01, 0.01, "LLM: 집 데스크탑 RTX 4080 SUPER의 Ollama. 검색은 모두 hybrid.", fontsize=9, color=INK2)
+        _style(ax, "오프라인 vs 로컬 LLM — 개발셋 40문항")
+        fig.text(0.01, 0.01, "LLM: 집 데스크탑 RTX 4080 SUPER · Ollama. 검색은 모두 hybrid. 지연시간 p50: 0.3초 / 3.7초 / 3.4초",
+                 fontsize=9, color=INK2)
         fig.tight_layout(rect=(0, 0.03, 1, 1))
         fig.savefig(FIG / "offline_vs_llm.png", dpi=160)
         plt.close(fig)
@@ -124,6 +126,7 @@ def main() -> None:
         "ablation": {k: {"retrieval": v["retrieval"], "answer": v["answer"], "latency_ms": v["latency_ms"]}
                      for k, v in runs.items() if v},
         "llm_runs": {k: load(k) for k in llm},
+        "note": "llm-gpt-oss-20b-dev는 빈 답변 수정 전, llm-gpt-oss-20b-fix-dev는 수정 후 실행. 모든 결과는 evaluation/rescore.py로 같은 기준 재채점.",
     }
     (EVAL / "metrics.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
     print("figures ->", FIG, "| summary -> evaluation/metrics.json")

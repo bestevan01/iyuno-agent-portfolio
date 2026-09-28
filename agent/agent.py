@@ -169,11 +169,19 @@ class Agent:
                     out = self._run_tool(c.function.name, args, book, res)
                 messages.append({"role": "tool", "tool_call_id": c.id, "content": self._tool_payload(c.function.name, out)})
         res.answer = re.sub(r"<think>.*?</think>", "", answer, flags=re.S).strip()
-        if not res.answer:  # 모델이 빈 답을 낸 경우(gpt-oss에서 관찰) → 검색 근거 발췌로 대체
+        if not res.answer:
+            # 모델이 도구는 불렀지만 빈 답을 낸 경우(qwen t07, gpt-oss q12에서 관찰)
+            # → 같은 질문을 규칙 기반 경로로 다시 풀어 답을 채운다(도구 결과·인용 포함).
+            off = self._ask_offline(question)
             res.fallback = True
-            res.answer = ("(모델이 최종 답변을 만들지 못해 검색 근거를 발췌합니다)\n"
-                          + (self._extractive(question, book.items) if book.items
-                             else "제공된 문서에서 확인되지 않습니다."))
+            res.answer = "(모델이 최종 답변을 만들지 못해 규칙 기반 답변으로 대체합니다)\n" + off.answer
+            res.citations = off.citations
+            res.tool_calls += off.tool_calls
+            for cid, ctx in zip(off.retrieved_chunk_ids, off.contexts, strict=True):
+                if cid not in res.retrieved_chunk_ids:
+                    res.retrieved_chunk_ids.append(cid)
+                    res.contexts.append(ctx)
+            return res
         self._attach_citations(res, book)
         return res
 
